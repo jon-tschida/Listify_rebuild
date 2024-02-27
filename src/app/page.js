@@ -8,6 +8,7 @@ export default function Home() {
         <h1 className="text-center">Meals</h1>
         <hr className="w-3/5 m-auto"/>
         <Meal mealTitle={"Pasta"}/> 
+        <Meal mealTitle={"nachos"} />
       </div>
     </main>
   );
