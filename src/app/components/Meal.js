@@ -2,20 +2,15 @@
 import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
+import { capitalize } from "../scripts/capitalize";
 
 export default function Meal(props) {
   const { mealTitle } = props;
   const [expanded, setExpanded] = React.useState(false);
-
-  const capitalize = (string) => {
-    let cap = string.split("")
-    return cap
-  }
-  console.log(capitalize("test"))
   return (
     <div>
       <div className="flex flex-row items-center justify-around w-full h-10 bg-slate-400">
-        <h1>{mealTitle}</h1>
+        <h1>{capitalize(mealTitle)}</h1>
         <Image
           priority
           src={downArrow}
