@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import deleteIcon from "../../../public/images/delete.svg";
+import { capitalize } from "../scripts/capitalize";
 
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
   return (
-    <div>
+    <div className="w-4/5 m-auto">
       {listIngredients.map((el, index) => (
-        <div className="flex justify-around">
-          <p key={index}>{el}</p>
+        <div className="flex justify-between">
+          <p key={index}>{capitalize(el)}</p>
           <Image
             priority
             src={deleteIcon}

@@ -3,24 +3,25 @@ import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
 import plusSign from "../../../public/images/plusSign.svg";
+import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
 
 export default function Meal(props) {
   const { mealTitle, ingredients, setListIngredients } = props;
   const [expanded, setExpanded] = React.useState(false);
 
-
-  const displayedIngredients = ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)
   return (
     <div>
-      <div className="flex flex-row items-center justify-around w-4/5 h-10 m-auto bg-slate-400">
+      <div className="flex flex-row items-center justify-between w-4/5 h-10 m-auto bg-slate-400">
         <div className="flex justify-around w-3/5 text-center">
           <Image
             priority
             src={plusSign}
             alt="plus sign"
             className="cursor-pointer select-none"
-            onClick={() => setListIngredients(prevState => [...prevState, ...ingredients])}
+            onClick={() =>
+              setListIngredients((prevState) => [...prevState, ...ingredients])
+            }
           />
           <h1
             className="cursor-pointer select-none"
@@ -43,8 +44,11 @@ export default function Meal(props) {
       </div>
       {expanded && (
         <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
-            {/* {displayedIngredients} */}
-            {ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
+          {ingredients.map((ingredient, index) => (
+            <li key={index} className="flex justify-between">
+              {capitalize(ingredient)}
+            </li>
+          ))}
         </ul>
       )}
     </div>
