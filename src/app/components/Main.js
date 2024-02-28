@@ -3,10 +3,8 @@ import React from "react";
 import Meal from "./Meal";
 
 export default function Main() {
-    
     const [mealsList, setMealsList] = React.useState([])
-
-
+    
   return (
     <main>
       <div className="flex items-center justify-around w-4/5 m-auto border border-black">

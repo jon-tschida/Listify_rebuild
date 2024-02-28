@@ -12,8 +12,18 @@ export default function Meal(props) {
     <div>
       <div className="flex flex-row items-center justify-around w-4/5 h-10 m-auto bg-slate-400">
         <div className="flex justify-around w-3/5 text-center">
-          <Image priority src={plusSign} alt="plus sign" />
-          <h1 className="cursor-pointer select-none" onClick={() => setExpanded((prevState) => !prevState)}>{capitalize(mealTitle)}</h1>
+          <Image
+            priority
+            src={plusSign}
+            alt="plus sign"
+            className="cursor-pointer select-none"
+          />
+          <h1
+            className="cursor-pointer select-none"
+            onClick={() => setExpanded((prevState) => !prevState)}
+          >
+            {capitalize(mealTitle)}
+          </h1>
         </div>
         <div className="flex flex-row-reverse justify-around w-2/5 pr-5 ">
           <Image
@@ -29,7 +39,9 @@ export default function Meal(props) {
       </div>
       {expanded && (
         <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
-            {ingredients.map(element => <li>{capitalize(element)}</li>)}
+          {ingredients.map((element) => (
+            <li>{capitalize(element)}</li>
+          ))}
         </ul>
       )}
     </div>
