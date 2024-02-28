@@ -10,13 +10,13 @@ export default function Main() {
     
   return (
     <main>
-      <div className="flex items-center justify-around w-4/5 m-auto border border-black">
-        <div className="w-2/5 p-1 border border-b rounded-md h-3/5 drop-shadow-md">
+      <div className="flex items-center justify-around w-4/5 h-[600px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="w-2/5 p-1 border border-b rounded-md h-4/5 drop-shadow-md bg-slate-100">
           <h1 className="text-center">Meals</h1>
           <hr className="w-3/5 m-auto" />
           <Meal mealTitle={"pasta"} ingredients={["noodles","sauce"]} setListIngredients={setListIngredients}/>
         </div>
-        <div className="w-2/5 p-1 border border-b rounded-md h-3/5 drop-shadow-md">
+        <div className="w-2/5 p-1 border border-b rounded-md drop-shadow-md h-4/5 bg-slate-100">
           <h1 className="text-center">Grocery List</h1>
           <hr className="w-3/5 m-auto" />
           <GroceryList listIngredients={listIngredients} setListIngredients={setListIngredients}/>

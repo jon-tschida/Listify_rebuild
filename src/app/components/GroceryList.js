@@ -5,9 +5,9 @@ import deleteIcon from "../../../public/images/delete.svg";
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
   return (
-    <div className="border border-black">
+    <div>
       {listIngredients.map((el, index) => (
-        <div className="flex justify-around border border-black">
+        <div className="flex justify-around">
           <p key={index}>{el}</p>
           <Image
             priority
