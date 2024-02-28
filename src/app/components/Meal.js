@@ -10,16 +10,20 @@ export default function Meal(props) {
   return (
     <div>
       <div className="flex flex-row items-center justify-around w-full h-10 bg-slate-400">
-        <h1>{capitalize(mealTitle)}</h1>
-        <Image
-          priority
-          src={downArrow}
-          alt="down arrow"
-          className={`transition-all cursor-pointer select-none ${
-            expanded || "hover:translate-y-0.5"
-          } ${expanded && "rotate-180 hover:-translate-y-0.5"}`}
-          onClick={() => setExpanded((prevState) => !prevState)}
-        />
+        <div className="w-3/5 text-center">
+          <h1>{capitalize(mealTitle)}</h1>
+        </div>
+        <div className="flex flex-row-reverse w-2/5 pr-5">
+          <Image
+            priority
+            src={downArrow}
+            alt="down arrow"
+            className={`transition-all cursor-pointer select-none ${
+              expanded || "hover:translate-y-0.5"
+            } ${expanded && "rotate-180 hover:-translate-y-0.5"}`}
+            onClick={() => setExpanded((prevState) => !prevState)}
+          />
+        </div>
       </div>
       {expanded && (
         <ul className="p-2 bg-slate-300">
