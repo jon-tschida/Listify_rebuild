@@ -2,18 +2,20 @@
 import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
+import plusSign from "../../../public/images/plusSign.svg";
 import { capitalize } from "../scripts/capitalize";
 
 export default function Meal(props) {
-  const { mealTitle } = props;
+  const { mealTitle, ingredients } = props;
   const [expanded, setExpanded] = React.useState(false);
   return (
     <div>
-      <div className="flex flex-row items-center justify-around w-full h-10 bg-slate-400">
-        <div className="w-3/5 text-center">
-          <h1>{capitalize(mealTitle)}</h1>
+      <div className="flex flex-row items-center justify-around w-4/5 h-10 m-auto bg-slate-400">
+        <div className="flex justify-around w-3/5 text-center">
+          <Image priority src={plusSign} alt="plus sign" />
+          <h1 className="cursor-pointer select-none" onClick={() => setExpanded((prevState) => !prevState)}>{capitalize(mealTitle)}</h1>
         </div>
-        <div className="flex flex-row-reverse w-2/5 pr-5">
+        <div className="flex flex-row-reverse justify-around w-2/5 pr-5 ">
           <Image
             priority
             src={downArrow}
@@ -26,10 +28,8 @@ export default function Meal(props) {
         </div>
       </div>
       {expanded && (
-        <ul className="p-2 bg-slate-300">
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+        <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
+            {ingredients.map(element => <li>{capitalize(element)}</li>)}
         </ul>
       )}
     </div>
