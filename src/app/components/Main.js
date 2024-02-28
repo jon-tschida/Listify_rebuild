@@ -19,7 +19,7 @@ export default function Main() {
         <div className="w-2/5 p-1 border border-b rounded-md h-3/5 drop-shadow-md">
           <h1 className="text-center">Grocery List</h1>
           <hr className="w-3/5 m-auto" />
-          <GroceryList listIngredients={listIngredients}/>
+          <GroceryList listIngredients={listIngredients} setListIngredients={setListIngredients}/>
         </div>
       </div>
     </main>

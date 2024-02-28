@@ -43,7 +43,8 @@ export default function Meal(props) {
       </div>
       {expanded && (
         <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
-            {displayedIngredients}
+            {/* {displayedIngredients} */}
+            {ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
         </ul>
       )}
     </div>
