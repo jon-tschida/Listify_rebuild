@@ -9,6 +9,7 @@ export default function Meal(props) {
   const { mealTitle, ingredients, setListIngredients } = props;
   const [expanded, setExpanded] = React.useState(false);
 
+
   const displayedIngredients = ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)
   return (
     <div>
@@ -19,7 +20,7 @@ export default function Meal(props) {
             src={plusSign}
             alt="plus sign"
             className="cursor-pointer select-none"
-            onClick={() => ingredients.forEach(el => setListIngredients((prevState) => console.log(prevState)))}
+            onClick={() => setListIngredients(prevState => [...prevState, ...ingredients])}
           />
           <h1
             className="cursor-pointer select-none"
