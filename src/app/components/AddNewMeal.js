@@ -5,10 +5,13 @@ import Image from "next/image";
 
 export default function AddNewMeal(props) {
   const { setMealsList } = props;
+
+//   State
   const [addingMeal, setAddingMeal] = React.useState({
     addingTitle: false,
     addingIngredients: false
   });
+  
   const [mealDetails, setMealDetails] = React.useState({
     mealTitle: "",
     mealIngredients: [],
@@ -37,7 +40,13 @@ export default function AddNewMeal(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(mealDetails)
+    
+    setAddingMeal(prevState=>{
+        return{
+            ...prevState,
+            addingIngredients: true
+        }
+    })
   }
 
   return (
@@ -67,7 +76,7 @@ export default function AddNewMeal(props) {
           />
         </>
       )}
-      {mealDetails.mealTitle && <h2>TEST</h2>}
+      {addingMeal.addingIngredients && <h2>TEST</h2>}
     </div>
   );
 }
