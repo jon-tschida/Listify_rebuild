@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
 import plusSign from "../../../public/images/plusSign.svg";
-import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
 
 export default function Meal(props) {
