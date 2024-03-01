@@ -2,7 +2,9 @@
 import React from "react";
 import plusSign from "../../../public/images/plusSign.svg";
 import Image from "next/image";
+import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
+import { deleteItem } from "../scripts/deleteItem";
 
 export default function AddNewMeal(props) {
   const { setMealsList } = props;
@@ -13,13 +15,24 @@ export default function AddNewMeal(props) {
     addingIngredients: false,
   });
 
-  const [addIngredient, setAddIngredient] = React.useState("")
+  const [addIngredient, setAddIngredient] = React.useState("");
 
   const [mealDetails, setMealDetails] = React.useState({
     mealTitle: "",
-    mealIngredients: [""],
+    mealIngredients: [],
   });
 
+  // Function to see if the user is trying to add a new meal. 
+  const handleSetTitle = () => {
+    setAddingMeal((prevState) => {
+      return {
+        ...prevState,
+        addingTitle: true,
+      };
+    });
+  };
+
+  // Form change functions for the new meal title, and new meal ingredients
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -31,19 +44,11 @@ export default function AddNewMeal(props) {
     });
   };
 
-  const handleIngredientChange = (e) =>{
-    setAddIngredient(e.target.value)
-  }
-
-  const handleSetTitle = () => {
-    setAddingMeal((prevState) => {
-      return {
-        ...prevState,
-        addingTitle: true,
-      };
-    });
+  const handleIngredientChange = (e) => {
+    setAddIngredient(e.target.value);
   };
 
+  // Submit functions
   const handleTitleSubmit = (event) => {
     event.preventDefault();
 
@@ -55,17 +60,21 @@ export default function AddNewMeal(props) {
     });
   };
 
-  const handleIngredientSubmit = (event) =>{
-    event.preventDefault()
+  const handleIngredientSubmit = (event) => {
+    event.preventDefault();
 
-    setMealDetails(prevState => {
-        return{
-            ...prevState,
-            mealIngredients: [...prevState.mealIngredients, capitalize(addIngredient)]
-        }
-    })
-    setAddIngredient("")
-  }
+    setMealDetails((prevState) => {
+      return {
+        ...prevState,
+        mealIngredients: [
+          ...prevState.mealIngredients,
+          capitalize(addIngredient),
+        ],
+      };
+    });
+    setAddIngredient("");
+  };
+  
   return (
     <>
       <div
@@ -106,7 +115,26 @@ export default function AddNewMeal(props) {
               className="text-center"
             ></input>
           </form>
-          {mealDetails.mealIngredients && mealDetails.mealIngredients.map(item => <p>{item}</p>)}
+          {mealDetails.mealIngredients &&
+            mealDetails.mealIngredients.map((item, index) => (
+              <div className="flex justify-between">
+                <p key={index}>{item}</p>
+                <Image
+                  priority
+                  alt="delete ingredient icon"
+                  src={deleteIcon}
+                  className="transition-all cursor-pointer hover:-translate-x-1"
+                  onClick={() =>
+                    setMealDetails((prevState) => {
+                      return {
+                        ...prevState,
+                        mealIngredients: [...prevState.mealIngredients,].filter((_, i) => i !== index),
+                      };
+                    })
+                  }
+                />
+              </div>
+            ))}
         </div>
       )}
     </>

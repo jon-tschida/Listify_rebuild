@@ -1,0 +1,1 @@
+export const deleteItem = (setFunction, index) => setFunction(prevList => prevList.filter((_, i) => i !== index))
