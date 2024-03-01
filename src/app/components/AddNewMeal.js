@@ -130,16 +130,21 @@ export default function AddNewMeal(props) {
           {/* If the mealdetails.mealingredients has anything added to it, then we render the ingredients list */}
           {mealDetails.mealIngredients &&
             mealDetails.mealIngredients.map((item, index) => (
-              <div className="flex justify-between">
-                <p key={index}>{item}</p>
-                <Image
-                  priority
-                  alt="delete ingredient icon"
-                  src={deleteIcon}
-                  className="transition-all cursor-pointer hover:-translate-x-1"
-                  onClick={() => handleDeleteNewIngredients(index)}
-                />
-              </div>
+              <>
+                <div className="flex justify-between">
+                  <p key={index}>{item}</p>
+                  <Image
+                    priority
+                    alt="delete ingredient icon"
+                    src={deleteIcon}
+                    className="transition-all cursor-pointer hover:-translate-x-1"
+                    onClick={() => handleDeleteNewIngredients(index)}
+                  />
+                </div>
+                <div className="w-1/5 m-auto mt-5 text-center text-white transition-all bg-green-600 rounded-md cursor-pointer select-none drop-shadow-md hover:bg-green-800">
+                  add meal
+                </div>
+              </>
             ))}
         </div>
       )}
