@@ -4,10 +4,10 @@ import plusSign from "../../../public/images/plusSign.svg";
 import Image from "next/image";
 import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
-import { deleteItem } from "../scripts/deleteItem";
+import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { setMealsList } = props;
+  const { setMealsList, setListIngredients } = props;
 
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
@@ -22,7 +22,31 @@ export default function AddNewMeal(props) {
 
   // ---Functions---
 
-  // Handling when a user deletes an ingredeint to their new meal
+  // Handle when the user clicks `Add Meal` button
+
+  const handleAddMeal = () => {
+    // Add the users new meal to the meal list (set in Main.js)
+    setMealsList((prevState) => [
+      ...prevState,
+      <Meal
+        mealTitle={mealDetails.mealTitle}
+        ingredients={mealDetails.mealIngredients}
+        setListIngredients={setListIngredients}
+      />,
+    ]);
+
+    // change all our state back to defaults
+    setAddingMeal({
+      addingTitle: false,
+      addingIngredients: false,
+    });
+    setMealDetails({
+      mealTitle: "",
+      mealIngredients: [],
+    });
+  };
+
+  // Handling when a user deletes an ingredeint from their new meal
   const handleDeleteNewIngredients = (index) =>
     setMealDetails((prevState) => {
       return {
@@ -33,7 +57,7 @@ export default function AddNewMeal(props) {
       };
     });
 
-  // Function to see if the user is trying to add a new meal. We use this on our plus sign button
+  // Function to see if the user is trying to add a new meal. We use this on our plus sign button to conditionally render our ingredient form
   const handleSetTitle = () => {
     setAddingMeal((prevState) => {
       return {
@@ -141,11 +165,14 @@ export default function AddNewMeal(props) {
                     onClick={() => handleDeleteNewIngredients(index)}
                   />
                 </div>
-                <div className="w-1/5 m-auto mt-5 text-center text-white transition-all bg-green-600 rounded-md cursor-pointer select-none drop-shadow-md hover:bg-green-800">
-                  add meal
-                </div>
               </>
             ))}
+          <div
+            className="w-1/5 m-auto mt-5 text-center text-white transition-all bg-green-600 rounded-md cursor-pointer select-none drop-shadow-md hover:bg-green-800"
+            onClick={handleAddMeal}
+          >
+            Add Meal
+          </div>
         </div>
       )}
     </>
