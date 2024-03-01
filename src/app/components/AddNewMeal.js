@@ -8,7 +8,7 @@ import { capitalize } from "../scripts/capitalize";
 import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { setMealsList, setListIngredients } = props;
+  const { setMealsList, setListIngredients,  } = props;
 
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
@@ -140,6 +140,7 @@ export default function AddNewMeal(props) {
               ></input>
             </form>
             <Image
+            alt="close button"
               priority
               src={closeIcon}
               onClick={() => handleSetTitle(true)}
@@ -175,8 +176,8 @@ export default function AddNewMeal(props) {
           {mealDetails.mealIngredients &&
             mealDetails.mealIngredients.map((item, index) => (
               <>
-                <div className="flex justify-between">
-                  <p key={index}>{item}</p>
+                <div key={index} className="flex justify-between">
+                  <p>{item}</p>
                   <Image
                     priority
                     alt="delete ingredient icon"

@@ -3,7 +3,9 @@ import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
 import plusSign from "../../../public/images/plusSign.svg";
+import closeIcon from "../../../public/images/closeButton.svg";
 import { capitalize } from "../scripts/capitalize";
+import { deleteItem } from "../scripts/deleteItem";
 
 export default function Meal(props) {
   const { mealTitle, ingredients, setListIngredients } = props;
