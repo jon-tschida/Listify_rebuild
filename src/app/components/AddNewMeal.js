@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import plusSign from "../../../public/images/plusSign.svg";
 import Image from "next/image";
+import plusSign from "../../../public/images/plusSign.svg";
 import deleteIcon from "../../../public/images/delete.svg";
+import closeIcon from "../../../public/images/closeButton.svg";
 import { capitalize } from "../scripts/capitalize";
 import Meal from "./Meal";
 
@@ -57,14 +58,25 @@ export default function AddNewMeal(props) {
       };
     });
 
-  // Function to see if the user is trying to add a new meal. We use this on our plus sign button to conditionally render our ingredient form
-  const handleSetTitle = () => {
+  // Function to see if the user is trying to add a new meal. We use this on our plus sign button to conditionally render our ingredient form, and our close button
+  const handleSetTitle = (close) => {
     setAddingMeal((prevState) => {
       return {
         ...prevState,
-        addingTitle: true,
+        addingTitle: !prevState.addingTitle,
       };
     });
+
+    if (close) {
+      setAddingMeal({
+        addingTitle: false,
+        addingIngredients: false,
+      });
+      setMealDetails({
+        mealTitle: "",
+        mealIngredients: [],
+      });
+    }
   };
 
   // Form change functions for the new meal title, and new meal ingredients
@@ -116,25 +128,33 @@ export default function AddNewMeal(props) {
         className={`flex flex-row justify-center items-center w-4/5 h-10 m-auto mt-2 bg-slate-400`}
       >
         {addingMeal.addingTitle ? (
-          <form onSubmit={(event) => handleTitleSubmit(event)}>
-            <input
-              type="text"
-              name="mealTitle"
-              value={mealDetails.mealTitle}
-              placeholder="Meal title"
-              onChange={handleChange}
-              className="text-center"
-            ></input>
-          </form>
+          <>
+            <form onSubmit={(event) => handleTitleSubmit(event)}>
+              <input
+                type="text"
+                name="mealTitle"
+                value={mealDetails.mealTitle}
+                placeholder="Meal title"
+                onChange={handleChange}
+                className="text-center"
+              ></input>
+            </form>
+            <Image
+              priority
+              src={closeIcon}
+              onClick={() => handleSetTitle(true)}
+              className="ml-3 cursor-pointer select-none"
+            />
+          </>
         ) : (
           <>
-            <h1 className="m-2">Add a meal</h1>
+            <h1 className="m-2 cursor-pointer select-none" onClick={() => handleSetTitle(false)}>Add a meal</h1>
             <Image
               priority
               src={plusSign}
               alt="add meal image"
               className="m-2 cursor-pointer select-none"
-              onClick={handleSetTitle}
+              onClick={() => handleSetTitle(false)}
             />
           </>
         )}
