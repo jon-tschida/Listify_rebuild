@@ -14,15 +14,26 @@ export default function AddNewMeal(props) {
     addingTitle: false,
     addingIngredients: false,
   });
-
   const [addIngredient, setAddIngredient] = React.useState("");
-
   const [mealDetails, setMealDetails] = React.useState({
     mealTitle: "",
     mealIngredients: [],
   });
 
-  // Function to see if the user is trying to add a new meal. 
+  // ---Functions---
+
+  // Handling when a user deletes an ingredeint to their new meal
+  const handleDeleteNewIngredients = (index) =>
+    setMealDetails((prevState) => {
+      return {
+        ...prevState,
+        mealIngredients: [...prevState.mealIngredients].filter(
+          (_, i) => i !== index
+        ),
+      };
+    });
+
+  // Function to see if the user is trying to add a new meal. We use this on our plus sign button
   const handleSetTitle = () => {
     setAddingMeal((prevState) => {
       return {
@@ -74,7 +85,7 @@ export default function AddNewMeal(props) {
     });
     setAddIngredient("");
   };
-  
+
   return (
     <>
       <div
@@ -104,6 +115,7 @@ export default function AddNewMeal(props) {
           </>
         )}
       </div>
+      {/* Conditionaly rendering our ingredient form  once the user set a meal title. */}
       {addingMeal.addingIngredients && (
         <div className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
           <form onSubmit={handleIngredientSubmit}>
@@ -115,6 +127,7 @@ export default function AddNewMeal(props) {
               className="text-center"
             ></input>
           </form>
+          {/* If the mealdetails.mealingredients has anything added to it, then we render the ingredients list */}
           {mealDetails.mealIngredients &&
             mealDetails.mealIngredients.map((item, index) => (
               <div className="flex justify-between">
@@ -124,14 +137,7 @@ export default function AddNewMeal(props) {
                   alt="delete ingredient icon"
                   src={deleteIcon}
                   className="transition-all cursor-pointer hover:-translate-x-1"
-                  onClick={() =>
-                    setMealDetails((prevState) => {
-                      return {
-                        ...prevState,
-                        mealIngredients: [...prevState.mealIngredients,].filter((_, i) => i !== index),
-                      };
-                    })
-                  }
+                  onClick={() => handleDeleteNewIngredients(index)}
                 />
               </div>
             ))}
