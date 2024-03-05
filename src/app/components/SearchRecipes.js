@@ -80,6 +80,7 @@ export default function SearchRecipes(props) {
               className="flex w-3/5 p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg"
             >
               {recipeComponent}
+              <p className="absolute top-0 right-0 p-1 bg-green-300 rounded cursor-pointer select-none h-fit">Add</p>
             </div>
           ))}
         </div>
