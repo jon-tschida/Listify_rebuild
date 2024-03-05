@@ -49,8 +49,8 @@ export default function SearchRecipes(props) {
         <FetchedRecipe
           fetchedTitle={recipeEntry.recipe.label}
           fetchedIngredients={recipeEntry.recipe.ingredients}
-          imageURL={recipeEntry.recipe.images.THUMBNAIL.url}
-          imageHeightWidth={recipeEntry.recipe.images.THUMBNAIL.width}
+          imageURL={recipeEntry.recipe.images.SMALL.url}
+          imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
         />,
       ])
     );
@@ -73,11 +73,11 @@ export default function SearchRecipes(props) {
           Search
         </p>
         {loading && <p>Loading recipes</p>}
-        <div className="flex flex-col max-h-full overflow-scroll border border-black">
+        <div className="flex flex-col items-center max-h-full overflow-scroll">
           {recipeComponents.map((recipeComponent, index) => (
             <div
               key={index}
-              className="flex flex-col p-2 m-2 border border-black w-fit"
+              className="flex w-3/5 p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg"
             >
               {recipeComponent}
             </div>
