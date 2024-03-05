@@ -58,7 +58,7 @@ export default function SearchRecipes(props) {
 
   return (
     <div className="w-screen h-screen bg-white/30 backdrop-blur-sm">
-      <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 bg-white border border-black rounded-lg drop-shadow-lg h-3/5 left-1/2 top-1/2">
+      <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg drop-shadow-lg h-3/5 left-1/2 top-1/2">
         <Image
           priority
           alt="close"
