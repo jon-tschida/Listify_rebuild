@@ -12,7 +12,7 @@ const apiUrl =
   "https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients";
 
 export default function SearchRecipes(props) {
-  const { openCloseSearchRecipes, setSearchingRecipes, setMealsList } = props;
+  const { openCloseSearchRecipes, setSearchingRecipes, setMealsList} = props;
 
   // API request state
   const [data, setData] = React.useState(null);
@@ -51,6 +51,7 @@ export default function SearchRecipes(props) {
           fetchedIngredients={recipeEntry.recipe.ingredients}
           imageURL={recipeEntry.recipe.images.SMALL.url}
           imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
+          setMealsList={setMealsList}
         />,
       ])
     );
