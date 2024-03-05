@@ -4,6 +4,7 @@ import closeIcon from "../../../public/images/closeButton.svg";
 import Image from "next/image";
 import axios from "axios";
 import FetchedRecipe from "./FetchedRecipe";
+import Meal from "./Meal";
 let testData = require("../scripts/response.json");
 
 // https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients
@@ -11,7 +12,7 @@ const apiUrl =
   "https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients";
 
 export default function SearchRecipes(props) {
-  const { openCloseSearchRecipes, setSearchingRecipes } = props;
+  const { openCloseSearchRecipes, setSearchingRecipes, setMealsList } = props;
 
   // API request state
   const [data, setData] = React.useState(null);
@@ -19,7 +20,6 @@ export default function SearchRecipes(props) {
   const [error, setError] = React.useState();
   // end API request state
   const [recipeComponents, setRecipeComponents] = React.useState([]);
-
   /*
   const fetchRecipes = (apiUrl) => {
     setLoading(true)
@@ -80,7 +80,6 @@ export default function SearchRecipes(props) {
               className="flex w-3/5 p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg"
             >
               {recipeComponent}
-              <p className="absolute top-0 right-0 p-1 bg-green-300 rounded cursor-pointer select-none h-fit">Add</p>
             </div>
           ))}
         </div>

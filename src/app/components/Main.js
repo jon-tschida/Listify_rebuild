@@ -22,6 +22,7 @@ export default function Main() {
         <SearchRecipes
           setSearchingRecipes={setSearchingRecipes}
           openCloseSearchRecipes={openCloseSearchRecipes}
+          setMealsList={setMealsList}
         />
       )}
       <div className="flex items-center justify-around w-4/5 h-[600px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20">

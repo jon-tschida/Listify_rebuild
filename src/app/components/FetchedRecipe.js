@@ -15,6 +15,7 @@ export default function FetchedRecipe(props) {
         height={imageHeightWidth}
       />
       <div className="flex flex-col justify-around ml-5">
+      <p className="absolute top-0 right-0 p-1 bg-green-300 rounded cursor-pointer select-none h-fit">Add</p>
         <h1 className="font-bold">{fetchedTitle}</h1>
         <div className="flex flex-wrap">
           {fetchedIngredients.map((ingredient, index) => {
