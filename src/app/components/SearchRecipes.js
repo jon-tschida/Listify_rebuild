@@ -63,7 +63,9 @@ export default function SearchRecipes(props) {
         />
         <p className="p-2 rounded-md cursor-pointer select-none bg-slate-300 w-fit" onClick={() => displayTestData(testData)}>search</p>
         {loading && <p>Loading recipes</p>}
+        <div className="border border-black">
         {recipeComponents.map((recipeComponent, index) => <div key={index}>{recipeComponent}</div>)}
+        </div>
       </div>
     </div>
   );
