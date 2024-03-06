@@ -28,25 +28,27 @@ export default function SearchRecipes(props) {
   // end API request state
   const [recipeComponents, setRecipeComponents] = React.useState([]);
   const [formData, setFormData] = React.useState("");
-  const [apiUrl, setApiUrl] = React.useState("")
-  
-  
+  const [apiUrl, setApiUrl] = React.useState("");
+
   const fetchRecipes = (apiUrl, e) => {
-    setRecipeComponents([])
-    e.preventDefault()
+    setRecipeComponents([]);
+    e.preventDefault();
     setLoading(true);
-    // Make the GET request using Axios
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        // Handle the response data
-        setData(response.data);
-      })
-      .catch((error) => {
-        // Handle errors
-        setError(error);
-        setLoading(false);
-      });
+
+    if (formData.length > 0) {
+      // Make the GET request using Axios
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          // Handle the response data
+          setData(response.data);
+        })
+        .catch((error) => {
+          // Handle errors
+          setError(error);
+          setLoading(false);
+        });
+    }
   };
 
   React.useEffect(() => {
@@ -70,10 +72,11 @@ export default function SearchRecipes(props) {
     }
   }, [data]);
 
-  React.useEffect(()=>{
-    setApiUrl(`https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`)
-  }, [formData])
-
+  React.useEffect(() => {
+    setApiUrl(
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
+    );
+  }, [formData]);
 
   return (
     <div className="w-screen h-screen bg-white/30 backdrop-blur-sm">
@@ -85,16 +88,16 @@ export default function SearchRecipes(props) {
           className="absolute cursor-pointer select-none top-2 right-2"
           onClick={() => openCloseSearchRecipes(setSearchingRecipes)}
         />
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center my-5">
           <SearchForm
             fetchRecipes={fetchRecipes}
             apiUrl={apiUrl}
             setFormData={setFormData}
           />
         </div>
-        {(loading && 
+        {loading && (
           <div className="flex items-center m-auto">
-            <p className="mb-2 mr-2">Loading recipes..</p> 
+            <p className="mb-2 mr-2">Loading recipes..</p>
             <Loader />
           </div>
         )}
@@ -102,7 +105,7 @@ export default function SearchRecipes(props) {
           {recipeComponents.map((recipeComponent, index) => (
             <div
               key={index}
-              className="flex w-3/5 p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg"
+              className="flex w-3/5 p-2 m-2 border border-green-200 rounded-md bg-stone-100 drop-shadow-lg laptop:w-5/6"
             >
               {recipeComponent}
             </div>

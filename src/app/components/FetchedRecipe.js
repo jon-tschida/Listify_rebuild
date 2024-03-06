@@ -11,11 +11,10 @@ export default function FetchedRecipe(props) {
     setMealsList,
     setListIngredients,
     fetchedRecipeSource,
-    fetchedRecipeUrl
+    fetchedRecipeUrl,
   } = props;
 
   const addMealToList = () => {
-
     // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
@@ -34,12 +33,16 @@ export default function FetchedRecipe(props) {
     ]);
   };
 
-  // Some response for quantities looked funny - 0 salt, 0 pepper should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups 
+  // Some response for quantities looked funny - 0 salt, 0 pepper should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
   // We use this function to fix those
   const testIngredientQuantity = (ingredientQuantity) => {
-    if(ingredientQuantity == 0.6666666666666666 || ingredientQuantity == 0.3333333333333333) return ingredientQuantity.toFixed(2)
-    else if (ingredientQuantity !== 0) return ingredientQuantity
-  }
+    if (
+      ingredientQuantity == 0.6666666666666666 ||
+      ingredientQuantity == 0.3333333333333333
+    )
+      return ingredientQuantity.toFixed(2);
+    else if (ingredientQuantity !== 0) return ingredientQuantity;
+  };
   return (
     <>
       <Image
@@ -47,6 +50,7 @@ export default function FetchedRecipe(props) {
         src={imageURL}
         width={imageHeightWidth}
         height={imageHeightWidth}
+        className="max-h-[200px] max-w-[200px]"
       />
       <div className="flex flex-col justify-around ml-5">
         <p
@@ -56,10 +60,17 @@ export default function FetchedRecipe(props) {
           Add
         </p>
         <div className="flex">
-        <h1 className="mr-1 font-bold">{fetchedTitle}</h1> - 
-        <a href={fetchedRecipeUrl} rel="noreferrer" target="_blank" className="ml-1 text-blue-500 underline">{fetchedRecipeSource}</a>
+          <h1 className="mr-1 font-bold">{fetchedTitle}</h1> -
+          <a
+            href={fetchedRecipeUrl}
+            rel="noreferrer"
+            target="_blank"
+            className="ml-1 text-blue-500 underline"
+          >
+            {fetchedRecipeSource}
+          </a>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap w-4/5 border border-red-500">
           {fetchedIngredients.map((ingredient, index) => {
             return (
               <p key={index} className="mr-1">
