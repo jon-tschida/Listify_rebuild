@@ -9,7 +9,7 @@ let testData = require("../scripts/response.json");
 
 // https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients
 const apiUrl =
-  "https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients";
+  "https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=steak&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients";
 
 export default function SearchRecipes(props) {
   const {
@@ -25,29 +25,44 @@ export default function SearchRecipes(props) {
   const [error, setError] = React.useState();
   // end API request state
   const [recipeComponents, setRecipeComponents] = React.useState([]);
-  /*
+
   const fetchRecipes = (apiUrl) => {
-    setLoading(true)
+    setLoading(true);
     // Make the GET request using Axios
-    axios.get(apiUrl)
-      .then(response => {
+    axios
+      .get(apiUrl)
+      .then((response) => {
         // Handle the response data
         setData(response.data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle errors
         setError(error);
         setLoading(false);
       });
   };
 
-  React.useEffect(()=>{
-    console.log(data)
-  }, [data])
- */
+  React.useEffect(() => {
+    console.log(data && data.hits);
+    if (data) {
+      data.hits.map((recipeEntry) =>
+        setRecipeComponents((prevState) => [
+          ...prevState,
+          <FetchedRecipe
+            fetchedTitle={recipeEntry.recipe.label}
+            fetchedIngredients={recipeEntry.recipe.ingredients}
+            imageURL={recipeEntry.recipe.images.SMALL.url}
+            imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
+            setMealsList={setMealsList}
+            setListIngredients={setListIngredients}
+          />,
+        ])
+      );
+    }
+  }, [data]);
 
-  const displayTestData = (dummyData) => {
+  const displayData = (dummyData) => {
     dummyData.hits.map((recipeEntry) =>
       setRecipeComponents((prevState) => [
         ...prevState,
@@ -75,7 +90,7 @@ export default function SearchRecipes(props) {
         />
         <p
           className="p-2 rounded-md cursor-pointer select-none bg-slate-300 w-fit"
-          onClick={() => displayTestData(testData)}
+          onClick={() => fetchRecipes(apiUrl)}
         >
           Search
         </p>
