@@ -28,9 +28,9 @@ export default function SearchRecipes(props) {
   // end API request state
   const [recipeComponents, setRecipeComponents] = React.useState([]);
   const [formData, setFormData] = React.useState("");
-  const [apiUrl, setApiUrl] = React.useState(
-    `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
-  );
+  const [apiUrl, setApiUrl] = React.useState("")
+  
+  
   const fetchRecipes = (apiUrl, e) => {
     setRecipeComponents([])
     e.preventDefault()
@@ -67,13 +67,14 @@ export default function SearchRecipes(props) {
           />,
         ])
       );
-      console.log(data)
     }
   }, [data]);
+
   React.useEffect(()=>{
-    console.log(formData);
     setApiUrl(`https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`)
   }, [formData])
+
+
   return (
     <div className="w-screen h-screen bg-white/30 backdrop-blur-sm">
       <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg drop-shadow-lg h-3/5 left-1/2 top-1/2">
