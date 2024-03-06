@@ -3,9 +3,6 @@ import React from "react";
 import Image from "next/image";
 import downArrow from "../../../public/images/downArrow.svg";
 import plusSign from "../../../public/images/plusSign.svg";
-import closeIcon from "../../../public/images/closeButton.svg";
-import { capitalize } from "../scripts/capitalize";
-import { deleteItem } from "../scripts/deleteItem";
 
 export default function Meal(props) {
   const { mealTitle, ingredients, setListIngredients } = props;
@@ -28,7 +25,7 @@ export default function Meal(props) {
             className="cursor-pointer select-none"
             onClick={() => setExpanded((prevState) => !prevState)}
           >
-            {capitalize(mealTitle)}
+            {mealTitle}
           </h1>
         </div>
         <div className="flex flex-row-reverse justify-around w-2/5 pr-5 ">
@@ -47,7 +44,7 @@ export default function Meal(props) {
         <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
           {ingredients.map((ingredient, index) => (
             <li key={index} className="flex justify-between">
-              {capitalize(ingredient)}
+              {ingredient}
             </li>
           ))}
         </ul>
