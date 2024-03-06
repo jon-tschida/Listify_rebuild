@@ -5,8 +5,18 @@ import downArrow from "../../../public/images/downArrow.svg";
 import plusSign from "../../../public/images/plusSign.svg";
 
 export default function Meal(props) {
-  const { mealTitle, ingredients, setListIngredients } = props;
+  const {
+    mealTitle,
+    ingredients,
+    setListIngredients,
+    fetchedRecipeUrl,
+    fetchedRecipeSource,
+  } = props;
   const [expanded, setExpanded] = React.useState(false);
+
+  const addToIngredeintsList = (setterFunction, newIngredients) =>{
+    setterFunction(prevState=>[...prevState, ...newIngredients.filter((el, index) => prevState[index] !== el) ])
+  }
 
   return (
     <div>
@@ -17,8 +27,8 @@ export default function Meal(props) {
             src={plusSign}
             alt="plus sign"
             className="cursor-pointer select-none"
-            onClick={() =>
-              setListIngredients((prevState) => [...prevState, ...ingredients])
+            onClick={() => addToIngredeintsList(setListIngredients, ingredients)
+              // setListIngredients((prevState) => [...prevState, ...ingredients])
             }
           />
           <h1
@@ -41,13 +51,20 @@ export default function Meal(props) {
         </div>
       </div>
       {expanded && (
-        <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
-          {ingredients.map((ingredient, index) => (
-            <li key={index} className="flex justify-between">
-              {ingredient}
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="w-4/5 p-2 pl-5 m-auto bg-slate-300">
+            {ingredients.map((ingredient, index) => (
+              <li key={index} className="flex justify-between">
+                {ingredient}
+              </li>
+            ))}
+            {/* 
+            If a recipe URL prop was passed to the component (as it is when adding a meal from there recipe search)
+            then we display a link to the recipe so the user can follow the steps
+            */}
+            <div className="text-center">{!!fetchedRecipeUrl && <a href={fetchedRecipeUrl} rel="noreferrer" target="_blank" className="text-blue-500 underline ">{fetchedRecipeSource}</a>}</div>
+          </ul>
+        </>
       )}
     </div>
   );

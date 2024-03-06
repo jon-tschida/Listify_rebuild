@@ -28,6 +28,8 @@ export default function FetchedRecipe(props) {
         ingredients={fixedIngredientListforProps}
         mealTitle={fetchedTitle}
         setListIngredients={setListIngredients}
+        fetchedRecipeSource={fetchedRecipeSource}
+        fetchedRecipeUrl={fetchedRecipeUrl}
       />,
     ]);
   };
