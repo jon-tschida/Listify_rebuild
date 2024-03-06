@@ -5,11 +5,12 @@ import Image from "next/image";
 import axios from "axios";
 import FetchedRecipe from "./FetchedRecipe";
 import Meal from "./Meal";
+import Loader from "./Loader";
 let testData = require("../scripts/response.json");
 
 // https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients
 const apiUrl =
-  "https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=steak&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=THUMBNAIL&field=label&field=ingredients";
+  "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients";
 
 export default function SearchRecipes(props) {
   const {
@@ -34,7 +35,6 @@ export default function SearchRecipes(props) {
       .then((response) => {
         // Handle the response data
         setData(response.data);
-        setLoading(false);
       })
       .catch((error) => {
         // Handle errors
@@ -44,7 +44,7 @@ export default function SearchRecipes(props) {
   };
 
   React.useEffect(() => {
-    console.log(data && data.hits);
+    setLoading(false)
     if (data) {
       data.hits.map((recipeEntry) =>
         setRecipeComponents((prevState) => [
@@ -62,21 +62,21 @@ export default function SearchRecipes(props) {
     }
   }, [data]);
 
-  const displayData = (dummyData) => {
-    dummyData.hits.map((recipeEntry) =>
-      setRecipeComponents((prevState) => [
-        ...prevState,
-        <FetchedRecipe
-          fetchedTitle={recipeEntry.recipe.label}
-          fetchedIngredients={recipeEntry.recipe.ingredients}
-          imageURL={recipeEntry.recipe.images.SMALL.url}
-          imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
-          setMealsList={setMealsList}
-          setListIngredients={setListIngredients}
-        />,
-      ])
-    );
-  };
+  // const displayData = (dummyData) => {
+  //   dummyData.hits.map((recipeEntry) =>
+  //     setRecipeComponents((prevState) => [
+  //       ...prevState,
+  //       <FetchedRecipe
+  //         fetchedTitle={recipeEntry.recipe.label}
+  //         fetchedIngredients={recipeEntry.recipe.ingredients}
+  //         imageURL={recipeEntry.recipe.images.SMALL.url}
+  //         imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
+  //         setMealsList={setMealsList}
+  //         setListIngredients={setListIngredients}
+  //       />,
+  //     ])
+  //   );
+  // };
 
   return (
     <div className="w-screen h-screen bg-white/30 backdrop-blur-sm">
@@ -94,7 +94,7 @@ export default function SearchRecipes(props) {
         >
           Search
         </p>
-        {loading && <p>Loading recipes</p>}
+        {loading && <> <p>Loading recipes..</p> <Loader /> </>}
         <div className="flex flex-col items-center max-h-full overflow-scroll">
           {recipeComponents.map((recipeComponent, index) => (
             <div

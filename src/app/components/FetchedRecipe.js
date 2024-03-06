@@ -13,9 +13,13 @@ export default function FetchedRecipe(props) {
   } = props;
 
   const addMealToList = () => {
+
+    // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
     );
+
+    // Using our fixed ingredients list from above to pass into a meal component
     setMealsList((prevState) => [
       ...prevState,
       <Meal
@@ -25,6 +29,11 @@ export default function FetchedRecipe(props) {
       />,
     ]);
   };
+
+  const testIngredientQuantity = (ingredientQuantity) => {
+    if(ingredientQuantity == 0.6666666666666666 || ingredientQuantity == 0.3333333333333333) return ingredientQuantity.toFixed(2)
+    else if (ingredientQuantity !== 0) return ingredientQuantity
+  }
   return (
     <>
       <Image
@@ -46,7 +55,7 @@ export default function FetchedRecipe(props) {
             return (
               <p key={index} className="mr-1">
                 {" "}
-                {ingredient.quantity !== 0 && ingredient.quantity}{" "}
+                {testIngredientQuantity(ingredient.quantity)}{" "}
                 {ingredient.measure !== "<unit>" && ingredient.measure}{" "}
                 {ingredient.food}{" "}
                 {index === fetchedIngredients.length - 1 || "•"}
