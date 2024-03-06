@@ -10,6 +10,8 @@ export default function FetchedRecipe(props) {
     imageHeightWidth,
     setMealsList,
     setListIngredients,
+    fetchedRecipeSource,
+    fetchedRecipeUrl
   } = props;
 
   const addMealToList = () => {
@@ -30,6 +32,8 @@ export default function FetchedRecipe(props) {
     ]);
   };
 
+  // Some response for quantities looked funny - 0 salt, 0 pepper should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups 
+  // We use this function to fix those
   const testIngredientQuantity = (ingredientQuantity) => {
     if(ingredientQuantity == 0.6666666666666666 || ingredientQuantity == 0.3333333333333333) return ingredientQuantity.toFixed(2)
     else if (ingredientQuantity !== 0) return ingredientQuantity
@@ -49,7 +53,10 @@ export default function FetchedRecipe(props) {
         >
           Add
         </p>
-        <h1 className="font-bold">{fetchedTitle}</h1>
+        <div className="flex">
+        <h1 className="mr-1 font-bold">{fetchedTitle}</h1> - 
+        <a href={fetchedRecipeUrl} rel="noreferrer" target="_blank" className="ml-1 text-blue-500 underline">{fetchedRecipeSource}</a>
+        </div>
         <div className="flex flex-wrap">
           {fetchedIngredients.map((ingredient, index) => {
             return (
