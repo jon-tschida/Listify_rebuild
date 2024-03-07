@@ -27,21 +27,23 @@ export default function Main() {
         />
       )}
       <div className="flex items-center justify-around w-4/5 h-[600px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20">
-        <div className="w-2/5 p-1 border border-b rounded-md h-4/5 drop-shadow-md bg-slate-100">
+        <div className="w-2/5 p-1 border border-black rounded-md h-4/5 drop-shadow-md bg-slate-100">
           <h1 className="text-center">Meals</h1>
           <hr className="w-3/5 m-auto mb-5" />
-          {mealsList.map((meal, index) => (
-            <div className="flex flex-row-reverse justify-around">
-              <p key={index} className="flex-grow">
-                {meal}
-              </p>
-            </div>
-          ))}
-          <AddNewMeal
-            setFormInput={setFormInput}
-            setMealsList={setMealsList}
-            setListIngredients={setListIngredients}
-          />
+          <div className="overflow-scroll h-4/5">
+            {mealsList.map((meal, index) => (
+              <div className="flex flex-row-reverse justify-around ">
+                <p key={index} className="flex-grow ">
+                  {meal}
+                </p>
+              </div>
+            ))}
+            <AddNewMeal
+              setFormInput={setFormInput}
+              setMealsList={setMealsList}
+              setListIngredients={setListIngredients}
+            />
+          </div>
           <div
             className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-slate-800 text-zinc-100"
             onClick={() => openCloseSearchRecipes(setSearchingRecipes)}

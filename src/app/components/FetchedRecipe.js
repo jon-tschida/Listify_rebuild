@@ -50,27 +50,27 @@ export default function FetchedRecipe(props) {
         src={imageURL}
         width={imageHeightWidth}
         height={imageHeightWidth}
-        className="max-h-[200px] max-w-[200px]"
+        className="flex-2"
       />
-      <div className="flex flex-col justify-around ml-5">
+      <div className="flex flex-col justify-around flex-1 ml-5 text-sm">
         <p
           className="absolute top-0 right-0 p-1 bg-green-300 rounded cursor-pointer select-none h-fit"
           onClick={addMealToList}
         >
           Add
         </p>
-        <div className="flex">
-          <h1 className="mr-1 font-bold">{fetchedTitle}</h1> -
+        <div className="flex flex-col">
+          <h1 className="mr-1 font-bold">{fetchedTitle}</h1>
           <a
             href={fetchedRecipeUrl}
             rel="noreferrer"
             target="_blank"
-            className="ml-1 text-blue-500 underline"
+            className="text-blue-500 underline "
           >
             {fetchedRecipeSource}
           </a>
         </div>
-        <div className="flex flex-wrap w-4/5 border border-red-500">
+        <div className="flex flex-wrap overflow-scroll max-h-4/5 w-5/5">
           {fetchedIngredients.map((ingredient, index) => {
             return (
               <p key={index} className="mr-1">
