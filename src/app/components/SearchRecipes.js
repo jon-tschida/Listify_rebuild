@@ -101,7 +101,7 @@ export default function SearchRecipes(props) {
             <Loader />
           </div>
         )}
-        <div className="flex flex-col items-center max-h-full overflow-scroll">
+        <div className="flex flex-col items-center max-h-full overflow-auto">
           {recipeComponents.map((recipeComponent, index) => (
             <div
               key={index}

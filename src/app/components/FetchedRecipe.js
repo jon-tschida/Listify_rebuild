@@ -70,7 +70,7 @@ export default function FetchedRecipe(props) {
             {fetchedRecipeSource}
           </a>
         </div>
-        <div className="flex flex-wrap overflow-scroll max-h-4/5 w-5/5">
+        <div className="flex flex-wrap overflow-auto max-h-4/5 w-5/5">
           {fetchedIngredients.map((ingredient, index) => {
             return (
               <p key={index} className="mr-1">

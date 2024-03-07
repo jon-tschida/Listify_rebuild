@@ -6,11 +6,14 @@ import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
 import { deleteItem } from "../scripts/deleteItem";
 import SearchRecipes from "./SearchRecipes";
+import closeButton from "../../../public/images/closeButton.svg";
 
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState([]);
+  const [mealsList, setMealsList] = React.useState([
+    <Meal ingredients={["peperonis"]} mealTitle={"pizza"} />,
+  ]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
 
   const openCloseSearchRecipes = (setFunction) =>
@@ -27,16 +30,26 @@ export default function Main() {
         />
       )}
       <div className="flex items-center justify-around w-4/5 h-[600px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20">
-        <div className="w-2/5 p-1 border border-black rounded-md h-4/5 drop-shadow-md bg-slate-100">
+        <div className="w-2/5 p-1 rounded-md h-4/5 drop-shadow-md bg-slate-100">
           <h1 className="text-center">Meals</h1>
           <hr className="w-3/5 m-auto mb-5" />
-          <div className="overflow-scroll h-4/5">
+          <div className="overflow-auto h-4/5">
             {mealsList.map((meal, index) => (
-              <div className="flex flex-row-reverse justify-around ">
-                <p key={index} className="flex-grow ">
-                  {meal}
-                </p>
-              </div>
+              <>
+                <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
+                  <div key={index} className="w-4/5">
+                    {meal}
+                  </div>
+                <div className="absolute top-0 right-0">
+                  <Image
+                    priority
+                    src={closeButton}
+                    className="w-[20px] cursor-pointer select-none"
+                    onClick={() => deleteItem(setMealsList, index)}
+                  />
+                </div>
+                </div>
+              </>
             ))}
             <AddNewMeal
               setFormInput={setFormInput}

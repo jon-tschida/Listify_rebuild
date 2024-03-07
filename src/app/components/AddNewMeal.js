@@ -8,7 +8,7 @@ import { capitalize } from "../scripts/capitalize";
 import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { setMealsList, setListIngredients,  } = props;
+  const { setMealsList, setListIngredients } = props;
 
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
@@ -109,23 +109,24 @@ export default function AddNewMeal(props) {
 
   const handleIngredientSubmit = (event) => {
     event.preventDefault();
-
-    setMealDetails((prevState) => {
-      return {
-        ...prevState,
-        mealIngredients: [
-          ...prevState.mealIngredients,
-          capitalize(addIngredient),
-        ],
-      };
-    });
-    setAddIngredient("");
+    if (addIngredient.length > 0) {
+      setMealDetails((prevState) => {
+        return {
+          ...prevState,
+          mealIngredients: [
+            ...prevState.mealIngredients,
+            capitalize(addIngredient),
+          ],
+        };
+      });
+      setAddIngredient("");
+    }
   };
 
   return (
     <>
       <div
-        className={`flex flex-row justify-center items-center w-4/5 h-10 m-auto mt-2 bg-slate-400`}
+        className={`flex flex-row justify-center items-center w-4/5 h-12 m-auto mt-2 rounded-md bg-slate-400`}
       >
         {addingMeal.addingTitle ? (
           <>
@@ -140,7 +141,7 @@ export default function AddNewMeal(props) {
               ></input>
             </form>
             <Image
-            alt="close button"
+              alt="close button"
               priority
               src={closeIcon}
               onClick={() => handleSetTitle(true)}
@@ -149,7 +150,12 @@ export default function AddNewMeal(props) {
           </>
         ) : (
           <>
-            <h1 className="m-2 cursor-pointer select-none" onClick={() => handleSetTitle(false)}>Add a meal</h1>
+            <h1
+              className="m-2 cursor-pointer select-none"
+              onClick={() => handleSetTitle(false)}
+            >
+              Add a meal
+            </h1>
             <Image
               priority
               src={plusSign}
