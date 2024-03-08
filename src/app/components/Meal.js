@@ -23,13 +23,13 @@ export default function Meal(props) {
 
   return (
     <div>
-      <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md`} bg-slate-400`}>
+      <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md`} bg-slate-400 my-1`}>
         <div className="flex justify-between w-full text-center">
           <Image
             priority
             src={plusSign}
             alt="plus sign"
-            className="ml-2 cursor-pointer select-none"
+            className="ml-4 cursor-pointer select-none"
             onClick={
               () => addToIngredeintsList(setListIngredients, ingredients)
               // setListIngredients((prevState) => [...prevState, ...ingredients])
@@ -46,7 +46,7 @@ export default function Meal(props) {
             priority
             src={downArrow}
             alt="down arrow"
-            className={`transition-all cursor-pointer select-none mr-2 ${
+            className={`transition-all cursor-pointer select-none mr-4 ${
               expanded || "hover:translate-y-0.5"
             } ${expanded && "rotate-180 hover:-translate-y-0.5"}`}
             onClick={() => setExpanded((prevState) => !prevState)}

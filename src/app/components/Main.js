@@ -11,9 +11,7 @@ import closeButton from "../../../public/images/closeButton.svg";
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState([
-    <Meal ingredients={["peperonis"]} mealTitle={"pizza"} />,
-  ]);
+  const [mealsList, setMealsList] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
 
   const openCloseSearchRecipes = (setFunction) =>
@@ -33,7 +31,7 @@ export default function Main() {
         <div className="w-2/5 p-1 rounded-md h-4/5 drop-shadow-md bg-slate-100">
           <h1 className="text-center">Meals</h1>
           <hr className="w-3/5 m-auto mb-5" />
-          <div className="overflow-auto h-4/5">
+          <div id="mealAndList" className="overflow-auto h-4/5">
             {mealsList.map((meal, index) => (
               <>
                 <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">

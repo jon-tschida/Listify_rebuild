@@ -8,14 +8,14 @@ export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
 
   return (
-    <div className="w-4/5 m-auto">
+    <div id="mealAndList" className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5">
       {listIngredients.map((el, index) => (
-        <div className="flex justify-between">
-          <p key={index}>{capitalize(el)}</p>
+        <div className="flex justify-between list-none transition-all hover:scale-105">
+          <li key={index}>{capitalize(el)}</li>
           <Image
             priority
             src={deleteIcon}
-            className="transition-all cursor-pointer hover:-translate-x-1"
+            className="transition-all cursor-pointer hover:-translate-x-1 w-[25px]"
             onClick={() => deleteItem(setListIngredients, index)}
           />
         </div>
