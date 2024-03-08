@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    background-color: #52525b;
+}
 #mealTitle{
     scrollbar-width: thin;
     scrollbar-color: black #94a3b8;
 }
 #mealAndList{
     scrollbar-width: thin;
-    scrollbar-color: black rgb(241 245 249);
+    scrollbar-color: black #f1f5f9;
 }
