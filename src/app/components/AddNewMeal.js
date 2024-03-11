@@ -150,12 +150,12 @@ export default function AddNewMeal(props) {
           </>
         ) : (
           <>
-            <h1
+            <p
               className="m-2 cursor-pointer select-none"
               onClick={() => handleSetTitle(false)}
             >
               Add a meal
-            </h1>
+            </p>
             <Image
               priority
               src={plusSign}
@@ -195,7 +195,7 @@ export default function AddNewMeal(props) {
               </>
             ))}
           <div
-            className="w-1/5 m-auto mt-5 text-center text-white transition-all bg-green-600 rounded-md cursor-pointer select-none drop-shadow-md hover:bg-green-800"
+            className="px-2 py-1 m-auto mt-5 text-center text-white transition-all bg-green-600 rounded-md cursor-pointer select-none w-fit drop-shadow-md hover:bg-green-800"
             onClick={handleAddMeal}
           >
             Add Meal

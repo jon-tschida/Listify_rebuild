@@ -54,7 +54,7 @@ export default function FetchedRecipe(props) {
       />
       <div className="flex flex-col justify-around flex-1 ml-5 text-sm">
         <p
-          className="absolute top-0 right-0 p-1 bg-green-300 rounded cursor-pointer select-none h-fit"
+          className="absolute top-0 right-0 px-2 py-1 transition-all bg-green-300 rounded cursor-pointer select-none h-fit hover:scale-105"
           onClick={addMealToList}
         >
           Add

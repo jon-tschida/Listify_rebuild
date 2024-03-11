@@ -6,7 +6,6 @@ import { deleteItem } from "../scripts/deleteItem";
 
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
-
   return (
     <div id="mealAndList" className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5">
       {listIngredients.map((el, index) => (
