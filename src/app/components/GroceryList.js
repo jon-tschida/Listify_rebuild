@@ -14,17 +14,22 @@ export default function GroceryList(props) {
       >
         {listIngredients.map((el, index) => (
           <div className="flex justify-between list-none transition-all hover:scale-105">
-            <li key={index}>{capitalize(el)}</li>
+            <li key={index} className="text-lg">{capitalize(el)}</li>
             <Image
               priority
               src={deleteIcon}
-              className="transition-all cursor-pointer hover:-translate-x-1 w-[25px]"
+              className="transition-all cursor-pointer w-[30px]"
               onClick={() => deleteItem(setListIngredients, index)}
             />
           </div>
         ))}
       </div>
-      <div>Copy</div>
+      <div
+        className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-slate-800 text-zinc-100"
+        onClick={() => alert(listIngredients)}
+      >
+        Copy Ingredients
+      </div>
     </>
   );
 }
