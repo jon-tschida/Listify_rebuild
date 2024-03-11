@@ -23,7 +23,7 @@ export default function Meal(props) {
 
   return (
     <div>
-      <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md`} bg-slate-400 my-1`}>
+      <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md my-1`} bg-slate-400 `}>
         <div className="flex justify-between w-full text-center">
           <Image
             priority
