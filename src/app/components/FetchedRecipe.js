@@ -54,7 +54,7 @@ export default function FetchedRecipe(props) {
       />
       <div className="flex flex-col justify-around flex-1 ml-5 text-sm">
         <p
-          className="absolute top-0 right-0 px-2 py-1 transition-all bg-green-300 rounded cursor-pointer select-none h-fit hover:scale-105"
+          className="absolute top-0 right-0 px-3 py-2 text-white transition-all rounded cursor-pointer select-none bg-searchBtnBlue h-fit hover:bg-blue-800"
           onClick={addMealToList}
         >
           Add
@@ -65,7 +65,7 @@ export default function FetchedRecipe(props) {
             href={fetchedRecipeUrl}
             rel="noreferrer"
             target="_blank"
-            className="text-blue-500 underline "
+            className="p-1 underline text-searchBtnBlue w-fit"
           >
             {fetchedRecipeSource}
           </a>

@@ -29,7 +29,7 @@ export default function SearchForm(props) {
         />
         <button
           type="submit"
-          className="absolute px-3 py-3 text-sm font-medium text-white bg-blue-700 rounded-lg end-1 bottom-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="absolute px-3 py-3 text-sm font-medium text-white transition-all rounded-lg bg-searchBtnBlue end-1 bottom-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
         >
           {/* Search */}
           <Image src={searchIcon} alt="search icon" />

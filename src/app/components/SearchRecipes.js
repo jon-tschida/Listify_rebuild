@@ -79,12 +79,12 @@ export default function SearchRecipes(props) {
 
   return (
     <div className="w-screen h-screen bg-black/80">
-      <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg drop-shadow-lg h-3/5 left-1/2 top-1/2">
+      <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-4/5 left-1/2 top-1/2">
         <Image
           priority
           alt="close"
           src={closeIcon}
-          className="absolute cursor-pointer select-none top-2 right-2"
+          className="absolute cursor-pointer select-none top-2 right-2 hover:scale-105"
           onClick={() => openCloseSearchRecipes(setSearchingRecipes)}
         />
         <div className="flex justify-center my-5">

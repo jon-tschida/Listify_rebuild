@@ -24,8 +24,9 @@ module.exports = {
     },
     extend: {
       colors:{
-        mealsAndListBg: "#A4B494",
-        mealsBg: "#564E58"
+        mealsAndListBg: "#CBD4C2",
+        mealsBg: "#564E58",
+        searchBtnBlue: "#007991",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

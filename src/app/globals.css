@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+    h1{
+        @apply text-xl font-medium text-center 
+    }
+}
+
 html{
     background-color: #252627;
+    /* background-color: #C97D60; */
 }
 #mealTitle{
     scrollbar-width: thin;
