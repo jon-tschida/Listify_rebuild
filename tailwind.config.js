@@ -23,6 +23,10 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
+      colors:{
+        mealsAndListBg: "#A4B494",
+        mealsBg: "#564E58"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

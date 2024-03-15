@@ -126,7 +126,7 @@ export default function AddNewMeal(props) {
   return (
     <>
       <div
-        className={`flex flex-row justify-center items-center w-4/5 h-12 m-auto mt-2 rounded-md bg-slate-400`}
+        className={`flex flex-row justify-center items-center w-4/5 h-12 m-auto mt-2 rounded-md bg-mealsBg text-white`}
       >
         {addingMeal.addingTitle ? (
           <>

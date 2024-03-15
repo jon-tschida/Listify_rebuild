@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html{
-    background-color: #52525b;
+    background-color: #252627;
 }
 #mealTitle{
     scrollbar-width: thin;

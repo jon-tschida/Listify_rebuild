@@ -31,7 +31,7 @@ export default function Main() {
           />
         )}
         <div className="flex tablet:flex-row items-center justify-around tablet:w-4/5 tablet:h-[600px] phone:h-[700px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 phone:flex-col phone:w-full">
-          <div className="p-1 rounded-md tablet:w-2/5 h-4/5 drop-shadow-md bg-slate-100 phone:w-4/5 phone:mb-2 tablet:mb-0">
+          <div className="p-1 rounded-md tablet:w-2/5 h-4/5 drop-shadow-md bg-mealsAndListBg phone:w-4/5 phone:mb-2 tablet:mb-0">
             <h1 className="text-center">Meals</h1>
             <hr className="w-3/5 m-auto mb-5" />
             <div id="mealAndList" className="overflow-auto h-4/5">
@@ -59,13 +59,13 @@ export default function Main() {
               />
             </div>
             <div
-              className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-slate-800 text-zinc-100"
+              className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-mealsBg text-zinc-100"
               onClick={() => openCloseSearchRecipes(setSearchingRecipes)}
             >
               Search for recipes
             </div>
           </div>
-          <div className="p-1 border border-b rounded-md tablet:w-2/5 drop-shadow-md h-4/5 bg-slate-100 phone:w-4/5 phone:mt-2 tablet:mt-0">
+          <div className="p-1 border border-b rounded-md tablet:w-2/5 drop-shadow-md h-4/5 bg-mealsAndListBg phone:w-4/5 phone:mt-2 tablet:mt-0">
             <h1 className="text-center">Grocery List</h1>
             <hr className="w-3/5 m-auto mb-5" />
             <GroceryList
