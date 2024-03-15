@@ -96,7 +96,6 @@ export default function SearchRecipes(props) {
         </div>
         {loading && (
           <div className="flex items-center m-auto">
-            <p className="mb-2 mr-2">Loading recipes..</p>
             <Loader />
           </div>
         )}
