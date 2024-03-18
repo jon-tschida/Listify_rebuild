@@ -32,7 +32,6 @@ export default function Meal(props) {
             className="ml-4 cursor-pointer select-none"
             onClick={
               () => addToIngredeintsList(setListIngredients, ingredients)
-              // setListIngredients((prevState) => [...prevState, ...ingredients])
             }
           />
           <div

@@ -47,6 +47,9 @@ export default function Main() {
             <h1>Meals</h1>
             <hr className="w-3/5 m-auto mb-5" />
             <div id="mealAndList" className="overflow-auto h-4/5">
+              {/* Our mealsList state is an array of Meal components
+              These Meal components are built with the add meal component, or from the searchrecipes componet
+              I'm having a hard time correctly saving this mealsList state in localstorage */}
               {mealsList.map((meal, index) => (
                 <>
                   <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
