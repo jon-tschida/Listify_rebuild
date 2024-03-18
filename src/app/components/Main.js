@@ -13,12 +13,24 @@ import closeButton from "../../../public/images/closeButton.svg";
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState([]);
+  const [mealsList, setMealsList] = React.useState(() => {/*
+    let init =
+      localStorage.getItem("createdMeals") === ""
+        ? ""
+        : JSON.parse(localStorage.getItem("createdMeals"));
+    return init || []; */
+   return []
+  });
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
+
+  React.useEffect(() => {
+    localStorage.setItem("createdMeals", JSON.stringify(mealsList));
+  }, [mealsList]);
 
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
+    console.log(mealsList)
   return (
     <ContextProvider>
       <main>
@@ -44,6 +56,7 @@ export default function Main() {
                     <div className="absolute top-0 right-0">
                       <Image
                         priority
+                        alt="delete meal button"
                         src={closeButton}
                         className="w-[20px] cursor-pointer select-none"
                         onClick={() => deleteItem(setMealsList, index)}

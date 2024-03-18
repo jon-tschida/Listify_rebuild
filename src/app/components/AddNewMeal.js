@@ -137,7 +137,7 @@ export default function AddNewMeal(props) {
                 value={mealDetails.mealTitle}
                 placeholder="Meal title"
                 onChange={handleChange}
-                className="text-center"
+                className="text-center text-slate-900"
               ></input>
             </form>
             <Image
