@@ -29,7 +29,6 @@ export default function Main() {
     let serializedData = JSON.stringify(mealsList);
     localStorage.setItem("meals", serializedData);
   }, [mealsList]);
-
   return (
     <ContextProvider>
       <main>
@@ -49,7 +48,7 @@ export default function Main() {
               {/* Our mealsList state is an array of Meal components
               These Meal components are built with the add meal component, or from the searchrecipes componet
 */}
-              {mealsList.map((component, index) => {
+              {typeof window !== "undefined" && mealsList.map((component, index) => {
                 const Component = Meal;
                 return (
                   <>
