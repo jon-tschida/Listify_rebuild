@@ -45,7 +45,7 @@ export default function Meal(props) {
             priority
             src={downArrow}
             alt="down arrow"
-            className={`transition-all cursor-pointer select-none mr-4 ${
+            className={`transition-all cursor-pointer select-none mr-4 w-auto ${
               expanded || "hover:translate-y-0.5"
             } ${expanded && "rotate-180 hover:-translate-y-0.5"}`}
             onClick={() => setExpanded((prevState) => !prevState)}
