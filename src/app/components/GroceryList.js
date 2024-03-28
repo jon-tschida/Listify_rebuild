@@ -22,13 +22,14 @@ export default function GroceryList(props) {
         id="mealAndList"
         className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5"
       >
-        {listIngredients.map((el, index) => (
+        {typeof window !== "undefined" && listIngredients.map((el, index) => (
           <div className="flex justify-between list-none transition-all hover:scale-105">
             <li key={index} className="text-lg">
               {capitalize(el)}
             </li>
             <Image
               priority
+              alt="delete button"
               src={deleteIcon}
               className="transition-all cursor-pointer w-[30px]"
               onClick={() => deleteItem(setListIngredients, index)}

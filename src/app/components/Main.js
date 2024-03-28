@@ -12,7 +12,14 @@ import closeButton from "../../../public/images/closeButton.svg";
 
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
-  const [listIngredients, setListIngredients] = React.useState([]);
+  const [listIngredients, setListIngredients] = React.useState(() =>{
+    if (typeof window !== "undefined"){
+      return !!JSON.parse(localStorage.getItem("ingredients"))
+        ? JSON.parse(localStorage.getItem("ingredients"))
+        : [];
+    }
+  });
+  
   const [mealsList, setMealsList] = React.useState(() => {
     if (typeof window !== "undefined") {
       return !!JSON.parse(localStorage.getItem("meals"))
@@ -29,6 +36,12 @@ export default function Main() {
     let serializedData = JSON.stringify(mealsList);
     localStorage.setItem("meals", serializedData);
   }, [mealsList]);
+
+  React.useEffect(() => {
+    let serializedData = JSON.stringify(listIngredients)
+    localStorage.setItem("ingredients", serializedData)
+  })
+
   return (
     <ContextProvider>
       <main>
