@@ -13,6 +13,7 @@ import Loader from "./Loader";
 
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
+
   const [listIngredients, setListIngredients] = React.useState(() => {
     if (typeof window !== "undefined") {
       return !!JSON.parse(localStorage.getItem("ingredients"))
@@ -20,7 +21,6 @@ export default function Main() {
         : [];
     }
   });
-
   const [mealsList, setMealsList] = React.useState(() => {
     if (typeof window !== "undefined") {
       return !!JSON.parse(localStorage.getItem("meals"))
@@ -41,7 +41,7 @@ export default function Main() {
   React.useEffect(() => {
     let serializedData = JSON.stringify(listIngredients);
     localStorage.setItem("ingredients", serializedData);
-  });
+  }, [listIngredients]);
 
   return (
     <ContextProvider>
