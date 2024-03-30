@@ -14,20 +14,14 @@ import Loader from "./Loader";
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
 
-  const [listIngredients, setListIngredients] = React.useState(() => {
-    if (typeof window !== "undefined") {
-      return !!JSON.parse(localStorage.getItem("ingredients"))
-        ? JSON.parse(localStorage.getItem("ingredients"))
-        : [];
-    }
-  });
-  const [mealsList, setMealsList] = React.useState(() => {
+  const [listIngredients, setListIngredients] = React.useState([]);
+  const [mealsList, setMealsList] = React.useState(/*() => {
     if (typeof window !== "undefined") {
       return !!JSON.parse(localStorage.getItem("meals"))
         ? JSON.parse(localStorage.getItem("meals"))
         : [];
     }
-  });
+  }*/ []);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
 
   const openCloseSearchRecipes = (setFunction) =>
@@ -37,11 +31,6 @@ export default function Main() {
     let serializedData = JSON.stringify(mealsList);
     localStorage.setItem("meals", serializedData);
   }, [mealsList]);
-
-  React.useEffect(() => {
-    let serializedData = JSON.stringify(listIngredients);
-    localStorage.setItem("ingredients", serializedData);
-  }, [listIngredients]);
 
   return (
     <ContextProvider>
@@ -60,8 +49,7 @@ export default function Main() {
             <hr className="w-3/5 m-auto mb-5" />
             <div id="mealAndList" className="overflow-auto h-4/5">
               {/* Our mealsList state is an array of Meal components
-              These Meal components are built with the add meal component, or from the searchrecipes componet
-*/}
+              These Meal components are built with the add meal component, or from the searchrecipes componet*/}
               {typeof window !== "undefined" &&
                 mealsList.map((component, index) => {
                   const Component = Meal;
@@ -69,9 +57,7 @@ export default function Main() {
                     <>
                       <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                         <div key={index} className="w-4/5">
-                          <Suspense fallback={<Loader />}>
                             <Component key={index} {...component.props} />
-                          </Suspense>
                         </div>
                         <div className="absolute top-0 right-0">
                           <Image
