@@ -14,6 +14,7 @@ export default function FetchedRecipe(props) {
     fetchedRecipeUrl,
   } = props;
 
+  // We run this function when the user clicks the `add` button from one of the fetched recipes 
   const addMealToList = () => {
     // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
