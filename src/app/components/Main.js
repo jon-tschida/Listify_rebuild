@@ -29,6 +29,10 @@ export default function Main() {
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
+
+    // This runs on first load
+    // if nothing is saved in local storage yet (users on first visit) then we create a local storage entry with a blank array
+    // If the user has added meals those are saved in local storage, we use the setMealsList to set our state to what is saved in local storage.
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
       // If nothing is stored in local storage, then we create a blank array in local storage
