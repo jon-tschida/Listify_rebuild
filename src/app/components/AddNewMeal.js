@@ -131,7 +131,7 @@ export default function AddNewMeal(props) {
       let serializedData = JSON.stringify(mealsList)
       localStorage.setItem("meals", serializedData)
 
-    }, 2000)
+    }, 1000)
   }, [mealsList])
 
   return (

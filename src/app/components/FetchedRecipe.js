@@ -33,7 +33,7 @@ export default function FetchedRecipe(props) {
     ]);
   };
 
-  // Some response for quantities looked funny - 0 salt, 0 pepper should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
+  // Some response for quantities looked funny: "0 salt", "0 pepper" should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
   // We use this function to fix those
   const testIngredientQuantity = (ingredientQuantity) => {
     if (
@@ -43,6 +43,7 @@ export default function FetchedRecipe(props) {
       return ingredientQuantity.toFixed(2);
     else if (ingredientQuantity !== 0) return ingredientQuantity;
   };
+  
   return (
     <>
       <Image
