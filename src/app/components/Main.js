@@ -15,23 +15,31 @@ export default function Main() {
   const [formInput, setFormInput] = React.useState("");
 
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState(/*() => {
+  const [mealsList, setMealsList] = React.useState(
+    /*() => {
     if (typeof window !== "undefined") {
       return !!JSON.parse(localStorage.getItem("meals"))
         ? JSON.parse(localStorage.getItem("meals"))
         : [];
     }
-  }*/ []);
+  }*/ []
+  );
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
 
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
   React.useEffect(() => {
-    let serializedData = JSON.stringify(mealsList);
-    localStorage.setItem("meals", serializedData);
-  }, [mealsList]);
-
+    if (typeof window !== "undefined" && window.localStorage) {
+      // If nothing is stored in local storage, then we create a blank array in local storage
+      if (!!localStorage.getItem("meals") == false) {
+        localStorage.setItem("meals", JSON.stringify([]));
+      }
+      console.log("savedMeals useEffect ran")
+      let savedMeals = JSON.parse(localStorage.getItem("meals"));
+      setMealsList(savedMeals);
+    }
+  }, []);
   return (
     <ContextProvider>
       <main>
@@ -50,14 +58,14 @@ export default function Main() {
             <div id="mealAndList" className="overflow-auto h-4/5">
               {/* Our mealsList state is an array of Meal components
               These Meal components are built with the add meal component, or from the searchrecipes componet*/}
-              {typeof window !== "undefined" &&
+              { //typeof window !== "undefined" &&
                 mealsList.map((component, index) => {
                   const Component = Meal;
                   return (
                     <>
                       <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                         <div key={index} className="w-4/5">
-                            <Component key={index} {...component.props} />
+                          <Component key={index} {...component.props} />
                         </div>
                         <div className="absolute top-0 right-0">
                           <Image
@@ -73,6 +81,7 @@ export default function Main() {
                   );
                 })}
               <AddNewMeal
+                mealsList={mealsList}
                 setFormInput={setFormInput}
                 setMealsList={setMealsList}
                 setListIngredients={setListIngredients}

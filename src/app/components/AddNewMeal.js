@@ -8,7 +8,7 @@ import { capitalize } from "../scripts/capitalize";
 import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { setMealsList, setListIngredients } = props;
+  const { setMealsList, setListIngredients, mealsList } = props;
 
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
@@ -35,7 +35,6 @@ export default function AddNewMeal(props) {
         setListIngredients={setListIngredients}
       />,
     ]);
-
     // change all our state back to defaults
     setAddingMeal({
       addingTitle: false,
@@ -45,6 +44,7 @@ export default function AddNewMeal(props) {
       mealTitle: "",
       mealIngredients: [],
     });
+    // localStorage.setItem("meals", JSON.stringify(mealsList))
   };
 
   // Handling when a user deletes an ingredeint from their new meal
@@ -122,6 +122,14 @@ export default function AddNewMeal(props) {
       setAddIngredient("");
     }
   };
+
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      let serializedData = JSON.stringify(mealsList)
+      localStorage.setItem("meals", serializedData)
+
+    }, 2000)
+  }, [mealsList])
 
   return (
     <>
