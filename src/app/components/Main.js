@@ -39,7 +39,6 @@ export default function Main() {
       if (!!localStorage.getItem("meals") == false) {
         localStorage.setItem("meals", JSON.stringify([]));
       }
-      console.log("savedMeals useEffect ran")
       let savedMeals = JSON.parse(localStorage.getItem("meals"));
       setMealsList(savedMeals);
     }
