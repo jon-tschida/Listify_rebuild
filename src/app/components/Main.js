@@ -9,7 +9,6 @@ import AddNewMeal from "./AddNewMeal";
 import { deleteItem } from "../scripts/deleteItem";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
-import Loader from "./Loader";
 
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");

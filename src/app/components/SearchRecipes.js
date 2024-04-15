@@ -104,7 +104,7 @@ export default function SearchRecipes(props) {
         )}
 
         {/* If loading is false, that means we have fetched the data. If there are no results, then we display no results */}
-        {!loading & data.hits.length === 0 ? <h1>No results 😢</h1> : null}
+        {!!data && !loading & data.hits.length === 0 ? <h1>No results 😢</h1> : null}
 
         {/* End conditional rendering */}
         <div className="flex flex-col items-center max-h-full overflow-auto">
