@@ -131,9 +131,7 @@ export default function AddNewMeal(props) {
       localStorage.setItem("meals", serializedData)
 
     }, 1000)
-    console.log("mealsList state", mealsList)
   }, [mealsList])
-
   return (
     <>
       <div

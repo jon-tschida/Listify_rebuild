@@ -20,7 +20,6 @@ export default function FetchedRecipe(props) {
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
     );
-
     // Using our fixed ingredients list from above to pass into a meal component
     setMealsList((prevState) => [
       ...prevState,
@@ -32,11 +31,12 @@ export default function FetchedRecipe(props) {
         fetchedRecipeUrl={fetchedRecipeUrl}
       />,
     ]);
+    fixedIngredientListforProps = [];
   };
 
   // Some response for quantities looked funny: "0 salt", "0 pepper" should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
   // We use this function to fix those
-  const testIngredientQuantity = (ingredientQuantity) => {
+  const fixIngredientQuantity = (ingredientQuantity) => {
     if (
       ingredientQuantity == 0.6666666666666666 ||
       ingredientQuantity == 0.3333333333333333
@@ -77,7 +77,7 @@ export default function FetchedRecipe(props) {
             return (
               <p key={index} className="mr-1">
                 {" "}
-                {testIngredientQuantity(ingredient.quantity)}{" "}
+                {fixIngredientQuantity(ingredient.quantity)}{" "}
                 {ingredient.measure !== "<unit>" && ingredient.measure}{" "}
                 {ingredient.food}{" "}
                 {index === fetchedIngredients.length - 1 || "•"}

@@ -15,15 +15,7 @@ export default function Main() {
   const [formInput, setFormInput] = React.useState("");
 
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState(
-    /*() => {
-    if (typeof window !== "undefined") {
-      return !!JSON.parse(localStorage.getItem("meals"))
-        ? JSON.parse(localStorage.getItem("meals"))
-        : [];
-    }
-  }*/ []
-  );
+  const [mealsList, setMealsList] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
 
   const openCloseSearchRecipes = (setFunction) =>

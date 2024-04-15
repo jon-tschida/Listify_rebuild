@@ -41,6 +41,7 @@ export default function SearchRecipes(props) {
         .then((response) => {
           // Handle the response data
           setData(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           // Handle errors
@@ -49,9 +50,8 @@ export default function SearchRecipes(props) {
         });
     }
   };
-
+  console.log(data)
   React.useEffect(() => {
-    setLoading(false);
     if (data) {
       data.hits.map((recipeEntry) =>
         setRecipeComponents((prevState) => [
@@ -99,6 +99,7 @@ export default function SearchRecipes(props) {
             <Loader />
           </div>
         )}
+        {!loading & data.hits.length === 0 ? <h1>No results 😢</h1> : null}
         <div className="flex flex-col items-center max-h-full overflow-auto">
           {recipeComponents.map((recipeComponent, index) => (
             <div
