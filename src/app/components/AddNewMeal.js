@@ -121,17 +121,7 @@ export default function AddNewMeal(props) {
       setAddIngredient("");
     }
   };
-
-  // This sets adds our meals list to the local storage when the user adds a new meal. 
-  // We use a timer so that on first load, the local storage isn't cleared out by a blank mealsList state
-  // We'll adjust this when we aren't drinking. 
-  React.useEffect(()=>{
-    setTimeout(()=>{
-      let serializedData = JSON.stringify(mealsList)
-      localStorage.setItem("meals", serializedData)
-
-    }, 1000)
-  }, [mealsList])
+  
   return (
     <>
       <div

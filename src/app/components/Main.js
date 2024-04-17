@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import ContextProvider from "./ContextProvider";
 
 import Image from "next/image";
@@ -20,20 +20,6 @@ export default function Main() {
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
-
-    // This runs on first load
-    // if nothing is saved in local storage yet (users on first visit) then we create a local storage entry with a blank array
-    // If the user has added meals those are saved in local storage, we use the setMealsList to set our state to what is saved in local storage.
-  React.useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      // If nothing is stored in local storage, then we create a blank array in local storage
-      if (!!localStorage.getItem("meals") == false) {
-        localStorage.setItem("meals", JSON.stringify([]));
-      }
-      let savedMeals = JSON.parse(localStorage.getItem("meals"));
-      setMealsList(savedMeals);
-    }
-  }, []);
   return (
     <ContextProvider>
       <main>
@@ -50,30 +36,22 @@ export default function Main() {
             <h1>Meals</h1>
             <hr className="w-3/5 m-auto mb-5" />
             <div id="mealAndList" className="overflow-auto h-4/5">
-              {/* Our mealsList state is an array of Meal components
-              These Meal components are built with the add meal component, or from the searchrecipes componet*/}
-              { //typeof window !== "undefined" &&
-                mealsList.map((component, index) => {
-                  const Component = Meal;
-                  return (
-                    <>
-                      <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
-                        <div key={index} className="w-4/5">
-                          <Component key={index} {...component.props} />
-                        </div>
-                        <div className="absolute top-0 right-0">
-                          <Image
-                            priority
-                            alt="delete meal button"
-                            src={closeButton}
-                            className="w-[20px] cursor-pointer select-none"
-                            onClick={() => deleteItem(setMealsList, index)}
-                          />
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
+              <>
+                <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
+                  <div className="w-4/5">
+                    <Meal />
+                  </div>
+                  <div className="absolute top-0 right-0">
+                    <Image
+                      priority
+                      alt="delete meal button"
+                      src={closeButton}
+                      className="w-[20px] cursor-pointer select-none"
+                      onClick={() => deleteItem(setMealsList, index)}
+                    />
+                  </div>
+                </div>
+              </>
               <AddNewMeal
                 mealsList={mealsList}
                 setFormInput={setFormInput}
