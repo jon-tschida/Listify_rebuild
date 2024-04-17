@@ -12,14 +12,13 @@ export default function Main() {
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
   const [mealDetails, setMealDetails] = React.useState({
-    titles: ["tacos"],
-    ingredients: [["lettuce", "cheese"]],
+    titles: [],
+    ingredients: [],
   });
 
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
-  // Fix this 
   const deleteMeal = (index) => {
     setMealDetails(prevState => {
       return({

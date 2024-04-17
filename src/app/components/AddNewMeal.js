@@ -126,7 +126,7 @@ export default function AddNewMeal(props) {
       >
         {addingMeal.addingTitle ? (
           <>
-            <form onSubmit={(event) => handleTitleSubmit(event)}>
+            <form onSubmit={(event) => handleTitleSubmit(event)} autoComplete="off">
               <input
                 type="text"
                 name="mealTitle"
