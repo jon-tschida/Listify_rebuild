@@ -12,10 +12,12 @@ import closeButton from "../../../public/images/closeButton.svg";
 
 export default function Main() {
   const [formInput, setFormInput] = React.useState("");
-
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
+  const [mealDetails, setMealDetails] = React.useState({
+    titles: ["Tacos", "spaghetti"],
+    ingredients: [["Lettuce", "Cheese", "Taco shells"], ["Noodles","sauce"]]
+  })
 
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
@@ -39,7 +41,11 @@ export default function Main() {
               <>
                 <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                   <div className="w-4/5">
-                    <Meal />
+                    {mealDetails.titles.map((item, index)=>{
+                      return <Meal mealTitle={item} ingredients={mealDetails.ingredients[index]}/>
+                    })
+
+                    }
                   </div>
                   <div className="absolute top-0 right-0">
                     <Image
@@ -53,10 +59,9 @@ export default function Main() {
                 </div>
               </>
               <AddNewMeal
-                mealsList={mealsList}
                 setFormInput={setFormInput}
-                setMealsList={setMealsList}
-                setListIngredients={setListIngredients}
+                mealDetails={mealDetails}
+                setMealDetails={setMealDetails}
               />
             </div>
             <div

@@ -8,7 +8,7 @@ import { capitalize } from "../scripts/capitalize";
 import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { setMealsList, setListIngredients, mealsList } = props;
+  const { mealDetails, setMealDetails, sesetFormInputt } = props;
 
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
@@ -16,7 +16,8 @@ export default function AddNewMeal(props) {
     addingIngredients: false,
   });
   const [addIngredient, setAddIngredient] = React.useState("");
-  const [mealDetails, setMealDetails] = React.useState({
+
+  const [newMealDetails, setNewMealDetails] = React.useState({
     mealTitle: "",
     mealIngredients: [],
   });
@@ -27,20 +28,19 @@ export default function AddNewMeal(props) {
 
   const handleAddMeal = () => {
     // Add the users new meal to the meal list (set in Main.js)
-    setMealsList((prevState) => [
-      ...prevState,
-      <Meal
-        mealTitle={mealDetails.mealTitle}
-        ingredients={mealDetails.mealIngredients}
-        setListIngredients={setListIngredients}
-      />,
-    ]);
+    setMealDetails((prevState) => {
+      return({
+        titles: [...prevState.titles, newMealDetails.mealTitle],
+        ingredients: [...prevState.ingredients, [newMealDetails.mealIngredients]]
+      })
+    });
+
     // change all our state back to defaults
     setAddingMeal({
       addingTitle: false,
       addingIngredients: false,
     });
-    setMealDetails({
+    setNewMealDetails({
       mealTitle: "",
       mealIngredients: [],
     });
@@ -48,7 +48,7 @@ export default function AddNewMeal(props) {
 
   // Handling when a user deletes an ingredeint from their new meal
   const handleDeleteNewIngredients = (index) =>
-    setMealDetails((prevState) => {
+    setNewMealDetails((prevState) => {
       return {
         ...prevState,
         mealIngredients: [...prevState.mealIngredients].filter(
@@ -71,7 +71,7 @@ export default function AddNewMeal(props) {
         addingTitle: false,
         addingIngredients: false,
       });
-      setMealDetails({
+      setNewMealDetails({
         mealTitle: "",
         mealIngredients: [],
       });
@@ -82,7 +82,7 @@ export default function AddNewMeal(props) {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setMealDetails((prevFormData) => {
+    setNewMealDetails((prevFormData) => {
       return {
         ...prevFormData,
         [name]: value,
@@ -109,7 +109,7 @@ export default function AddNewMeal(props) {
   const handleIngredientSubmit = (event) => {
     event.preventDefault();
     if (addIngredient.length > 0) {
-      setMealDetails((prevState) => {
+      setNewMealDetails((prevState) => {
         return {
           ...prevState,
           mealIngredients: [
@@ -121,7 +121,7 @@ export default function AddNewMeal(props) {
       setAddIngredient("");
     }
   };
-  
+  console.log(newMealDetails)
   return (
     <>
       <div
@@ -133,7 +133,7 @@ export default function AddNewMeal(props) {
               <input
                 type="text"
                 name="mealTitle"
-                value={mealDetails.mealTitle}
+                value={newMealDetails.mealTitle}
                 placeholder="Meal title"
                 onChange={handleChange}
                 className="text-center text-slate-900"
@@ -178,8 +178,8 @@ export default function AddNewMeal(props) {
             ></input>
           </form>
           {/* If the mealdetails.mealingredients has anything added to it, then we render the ingredients list */}
-          {mealDetails.mealIngredients &&
-            mealDetails.mealIngredients.map((item, index) => (
+          {newMealDetails.mealIngredients &&
+            newMealDetails.mealIngredients.map((item, index) => (
               <>
                 <div key={index} className="flex justify-between">
                   <p>{item}</p>
