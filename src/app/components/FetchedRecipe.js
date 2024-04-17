@@ -9,23 +9,35 @@ export default function FetchedRecipe(props) {
     imageHeightWidth,
     fetchedRecipeSource,
     fetchedRecipeUrl,
-    setMealDetails
+    setMealDetails,
   } = props;
 
-  // We run this function when the user clicks the `add` button from one of the fetched recipes 
+  // We run this function when the user clicks the `add` button from one of the fetched recipes
 
   const addMealToList = () => {
     // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
     );
+    // Pushing a link to the recipe at the end of the ingredients array
+    fixedIngredientListforProps.push(
+      <a
+        href={fetchedRecipeUrl}
+        rel="noreferrer"
+        target="_blank"
+        className="p-1 underline text-searchBtnBlue w-fit"
+      >
+        {fetchedRecipeSource}
+      </a>
+    );
+    
     // Using our fixed ingredients list from above to pass into a meal details
-    setMealDetails(prevState => {
-      return({
+    setMealDetails((prevState) => {
+      return {
         titles: [...prevState.titles, fetchedTitle],
-        ingredients: [...prevState.ingredients, fixedIngredientListforProps]
-      })
-    })
+        ingredients: [...prevState.ingredients, fixedIngredientListforProps],
+      };
+    });
   };
 
   // Some response for quantities looked funny: "0 salt", "0 pepper" should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
@@ -38,7 +50,7 @@ export default function FetchedRecipe(props) {
       return ingredientQuantity.toFixed(2);
     else if (ingredientQuantity !== 0) return ingredientQuantity;
   };
-  
+
   return (
     <>
       <Image

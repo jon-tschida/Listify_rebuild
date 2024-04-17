@@ -17,7 +17,7 @@ export default function Meal(props) {
   const addToIngredeintsList = (setterFunction, newIngredients) => {
     setterFunction((prevState) => [
       ...prevState,
-      ...newIngredients.filter((el, index) => prevState[index] !== el),
+      ...newIngredients.filter((el, index) => prevState[index] !== el).filter(el => typeof el != "object"),
     ]);
   };
   return (
