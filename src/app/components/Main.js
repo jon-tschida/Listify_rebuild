@@ -27,7 +27,6 @@ export default function Main() {
       })
     })
   }
-  console.log(mealDetails)
   return (
     <ContextProvider>
       <main>
@@ -35,8 +34,7 @@ export default function Main() {
           <SearchRecipes
             setSearchingRecipes={setSearchingRecipes}
             openCloseSearchRecipes={openCloseSearchRecipes}
-            setMealsList={setMealsList}
-            setListIngredients={setListIngredients}
+            setMealDetails={setMealDetails}
           />
         )}
         <div className="flex tablet:flex-row items-center justify-around tablet:w-4/5 tablet:h-[600px] phone:h-[700px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 phone:flex-col phone:w-full">

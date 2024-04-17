@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Meal from "./Meal";
 
 export default function FetchedRecipe(props) {
   const {
@@ -8,30 +7,25 @@ export default function FetchedRecipe(props) {
     fetchedIngredients,
     imageURL,
     imageHeightWidth,
-    setMealsList,
-    setListIngredients,
     fetchedRecipeSource,
     fetchedRecipeUrl,
+    setMealDetails
   } = props;
 
   // We run this function when the user clicks the `add` button from one of the fetched recipes 
+
   const addMealToList = () => {
     // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
     );
-    // Using our fixed ingredients list from above to pass into a meal component
-    setMealsList((prevState) => [
-      ...prevState,
-      <Meal
-        ingredients={fixedIngredientListforProps}
-        mealTitle={fetchedTitle}
-        setListIngredients={setListIngredients}
-        fetchedRecipeSource={fetchedRecipeSource}
-        fetchedRecipeUrl={fetchedRecipeUrl}
-      />,
-    ]);
-    fixedIngredientListforProps = [];
+    // Using our fixed ingredients list from above to pass into a meal details
+    setMealDetails(prevState => {
+      return({
+        titles: [...prevState.titles, fetchedTitle],
+        ingredients: [...prevState.ingredients, fixedIngredientListforProps]
+      })
+    })
   };
 
   // Some response for quantities looked funny: "0 salt", "0 pepper" should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups

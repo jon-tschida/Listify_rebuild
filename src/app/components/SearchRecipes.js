@@ -16,8 +16,7 @@ export default function SearchRecipes(props) {
   const {
     openCloseSearchRecipes,
     setSearchingRecipes,
-    setMealsList,
-    setListIngredients,
+    setMealDetails
   } = props;
 
   // API request state
@@ -50,7 +49,6 @@ export default function SearchRecipes(props) {
         });
     }
   };
-  console.log(data)
   React.useEffect(() => {
     if (data) {
       data.hits.map((recipeEntry) =>
@@ -63,8 +61,7 @@ export default function SearchRecipes(props) {
             fetchedIngredients={recipeEntry.recipe.ingredients}
             imageURL={recipeEntry.recipe.images.SMALL.url}
             imageHeightWidth={recipeEntry.recipe.images.SMALL.width}
-            setMealsList={setMealsList}
-            setListIngredients={setListIngredients}
+            setMealDetails={setMealDetails}
           />,
         ])
       );
