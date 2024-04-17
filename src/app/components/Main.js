@@ -21,13 +21,14 @@ export default function Main() {
 
   // Fix this 
   const deleteMeal = (index) => {
-    setMealDetails(prevState =>{
+    setMealDetails(prevState => {
       return({
-        titles: [...prevState.titles, prevState.titles.filter((_, i) => i !== index)],
-        ingredients: [...prevState.ingredients, prevState.ingredients.filter((_, i) => i !== index)]
+        titles: [...prevState.titles.filter((_, i) => i !== index)],
+        ingredients: [...prevState.ingredients.filter((_, i) => i !== index)]
       })
     })
   }
+  console.log(mealDetails)
   return (
     <ContextProvider>
       <main>
@@ -47,7 +48,7 @@ export default function Main() {
               <>
                 <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                   <div className="w-4/5">
-                    {mealDetails.titles.map((item, index) => {
+                    {mealDetails.titles.length > 0 && mealDetails.titles.map((item, index) => {
                       return (
                         <>
                         <Image alt="delete meal icon" src={closeButton} className="absolute right-0" onClick={()=>deleteMeal(index)}/>
