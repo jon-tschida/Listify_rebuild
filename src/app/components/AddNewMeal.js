@@ -5,11 +5,9 @@ import plusSign from "../../../public/images/plusSign.svg";
 import deleteIcon from "../../../public/images/delete.svg";
 import closeIcon from "../../../public/images/closeButton.svg";
 import { capitalize } from "../scripts/capitalize";
-import Meal from "./Meal";
 
 export default function AddNewMeal(props) {
-  const { mealDetails, setMealDetails, sesetFormInputt } = props;
-
+  const { setMealDetails } = props;
   //   State
   const [addingMeal, setAddingMeal] = React.useState({
     addingTitle: false,
@@ -27,11 +25,11 @@ export default function AddNewMeal(props) {
   // Handle when the user clicks `Add Meal` button
 
   const handleAddMeal = () => {
-    // Add the users new meal to the meal list (set in Main.js)
+    // Add the new meal details to the primary meal details, set in the main.js. The primary meal details are what we render on the site. 
     setMealDetails((prevState) => {
       return({
         titles: [...prevState.titles, newMealDetails.mealTitle],
-        ingredients: [...prevState.ingredients, [newMealDetails.mealIngredients]]
+        ingredients: [...prevState.ingredients, newMealDetails.mealIngredients]
       })
     });
 
@@ -121,7 +119,6 @@ export default function AddNewMeal(props) {
       setAddIngredient("");
     }
   };
-  console.log(newMealDetails)
   return (
     <>
       <div

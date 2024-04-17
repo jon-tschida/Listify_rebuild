@@ -20,7 +20,6 @@ export default function Meal(props) {
       ...newIngredients.filter((el, index) => prevState[index] !== el),
     ]);
   };
-
   return (
     <div>
       <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md my-1`} bg-slate-400 `}>

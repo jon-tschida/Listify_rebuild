@@ -1,27 +1,33 @@
 "use client";
 import React from "react";
 import ContextProvider from "./ContextProvider";
-
 import Image from "next/image";
 import Meal from "./Meal";
 import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
-import { deleteItem } from "../scripts/deleteItem";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
 
 export default function Main() {
-  const [formInput, setFormInput] = React.useState("");
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
   const [mealDetails, setMealDetails] = React.useState({
-    titles: ["Tacos", "spaghetti"],
-    ingredients: [["Lettuce", "Cheese", "Taco shells"], ["Noodles","sauce"]]
-  })
+    titles: ["tacos"],
+    ingredients: [["lettuce", "cheese"]],
+  });
 
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
+  // Fix this 
+  const deleteMeal = (index) => {
+    setMealDetails(prevState =>{
+      return({
+        titles: [...prevState.titles, prevState.titles.filter((_, i) => i !== index)],
+        ingredients: [...prevState.ingredients, prevState.ingredients.filter((_, i) => i !== index)]
+      })
+    })
+  }
   return (
     <ContextProvider>
       <main>
@@ -41,28 +47,23 @@ export default function Main() {
               <>
                 <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                   <div className="w-4/5">
-                    {mealDetails.titles.map((item, index)=>{
-                      return <Meal mealTitle={item} ingredients={mealDetails.ingredients[index]}/>
-                    })
-
-                    }
-                  </div>
-                  <div className="absolute top-0 right-0">
-                    <Image
-                      priority
-                      alt="delete meal button"
-                      src={closeButton}
-                      className="w-[20px] cursor-pointer select-none"
-                      onClick={() => deleteItem(setMealsList, index)}
-                    />
+                    {mealDetails.titles.map((item, index) => {
+                      return (
+                        <>
+                        <Image alt="delete meal icon" src={closeButton} className="absolute right-0" onClick={()=>deleteMeal(index)}/>
+                          <Meal
+                            mealTitle={item}
+                            ingredients={mealDetails.ingredients[index]}
+                            setListIngredients={setListIngredients}
+                            listIngredients={listIngredients}
+                          />
+                        </>
+                      );
+                    })}
                   </div>
                 </div>
               </>
-              <AddNewMeal
-                setFormInput={setFormInput}
-                mealDetails={mealDetails}
-                setMealDetails={setMealDetails}
-              />
+              <AddNewMeal setMealDetails={setMealDetails} />
             </div>
             <div
               className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-mealsBg text-zinc-100"
