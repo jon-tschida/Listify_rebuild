@@ -37,7 +37,6 @@ export default function Main() {
   React.useEffect(() => {
     window.localStorage.setItem("mealDetails", JSON.stringify(mealDetails))
   }, [mealDetails]);
-
   return (
     <ContextProvider>
       <main>
