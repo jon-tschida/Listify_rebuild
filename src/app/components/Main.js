@@ -11,11 +11,12 @@ import closeButton from "../../../public/images/closeButton.svg";
 export default function Main() {
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
-  const [mealDetails, setMealDetails] = React.useState({
+  const [mealDetails, setMealDetails] = React.useState(() => {
+    return {
     titles: [],
     ingredients: [],
-  });
-
+  }}
+);
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
@@ -27,6 +28,13 @@ export default function Main() {
       })
     })
   }
+  React.useEffect(()=>{
+    !!localStorage.getItem("mealDetails") && setMealDetails(JSON.parse(localStorage.getItem("mealDetails")))
+  },[])
+
+  React.useEffect(()=>{
+    mealDetails.titles.length >0 && localStorage.setItem("mealDetails", JSON.stringify(mealDetails))
+  },[mealDetails])
   return (
     <ContextProvider>
       <main>
