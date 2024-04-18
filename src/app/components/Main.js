@@ -12,29 +12,32 @@ export default function Main() {
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
   const [mealDetails, setMealDetails] = React.useState(() => {
-    return {
-    titles: [],
-    ingredients: [],
-  }}
-);
+        return {
+          titles: [],
+          ingredients: [],
+        };
+    });
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
   const deleteMeal = (index) => {
-    setMealDetails(prevState => {
-      return({
+    setMealDetails((prevState) => {
+      return {
         titles: [...prevState.titles.filter((_, i) => i !== index)],
-        ingredients: [...prevState.ingredients.filter((_, i) => i !== index)]
-      })
-    })
-  }
-  React.useEffect(()=>{
-    !!localStorage.getItem("mealDetails") && setMealDetails(JSON.parse(localStorage.getItem("mealDetails")))
-  },[])
+        ingredients: [...prevState.ingredients.filter((_, i) => i !== index)],
+      };
+    });
+  };
 
   React.useEffect(()=>{
-    mealDetails.titles.length >0 && localStorage.setItem("mealDetails", JSON.stringify(mealDetails))
-  },[mealDetails])
+    const data = window.localStorage.getItem("mealDetails")
+    if(data !== null) setMealDetails(JSON.parse(data))
+  }, [])
+
+  React.useEffect(() => {
+    window.localStorage.setItem("mealDetails", JSON.stringify(mealDetails))
+  }, [mealDetails]);
+
   return (
     <ContextProvider>
       <main>
@@ -53,19 +56,25 @@ export default function Main() {
               <>
                 <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
                   <div className="w-4/5">
-                    {mealDetails.titles.length > 0 && mealDetails.titles.map((item, index) => {
-                      return (
-                        <>
-                        <Image alt="delete meal icon" src={closeButton} className="absolute right-0" onClick={()=>deleteMeal(index)}/>
-                          <Meal
-                            mealTitle={item}
-                            ingredients={mealDetails.ingredients[index]}
-                            setListIngredients={setListIngredients}
-                            listIngredients={listIngredients}
-                          />
-                        </>
-                      );
-                    })}
+                    {mealDetails.titles.length > 0 &&
+                      mealDetails.titles.map((item, index) => {
+                        return (
+                          <>
+                            <Image
+                              alt="delete meal icon"
+                              src={closeButton}
+                              className="absolute right-0"
+                              onClick={() => deleteMeal(index)}
+                            />
+                            <Meal
+                              mealTitle={item}
+                              ingredients={mealDetails.ingredients[index]}
+                              setListIngredients={setListIngredients}
+                              listIngredients={listIngredients}
+                            />
+                          </>
+                        );
+                      })}
                   </div>
                 </div>
               </>
