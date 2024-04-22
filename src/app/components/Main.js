@@ -41,6 +41,17 @@ export default function Main() {
     !!data && setListIngredients(JSON.parse(localStorage.getItem("list")));
   }, []);
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("meals", JSON.stringify(mealDetails));
+    }, 250);
+  }, [mealDetails]);
+
+  React.useEffect(() => {
+    let mealsData = JSON.parse(localStorage.getItem("meals"));
+    if (!!mealsData && mealsData.titles.length > 0) setMealDetails(JSON.parse(localStorage.getItem("meals")));
+  }, []);
+
   return (
     <ContextProvider>
       <main>
