@@ -7,16 +7,17 @@ import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
+import { list } from "postcss";
 
 export default function Main() {
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
   const [mealDetails, setMealDetails] = React.useState(() => {
-        return {
-          titles: [],
-          ingredients: [],
-        };
-    });
+    return {
+      titles: [],
+      ingredients: [],
+    };
+  });
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
@@ -29,14 +30,17 @@ export default function Main() {
     });
   };
 
-  React.useEffect(()=>{
-    const data = window.localStorage.getItem("mealDetails")
-    if(data !== null) setMealDetails(JSON.parse(data))
-  }, [])
+  React.useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("list", JSON.stringify(listIngredients));
+    }, 250);
+  }, [listIngredients]);
 
   React.useEffect(() => {
-    window.localStorage.setItem("mealDetails", JSON.stringify(mealDetails))
-  }, [mealDetails]);
+    let data = JSON.parse(localStorage.getItem("list"));
+    !!data && setListIngredients(JSON.parse(localStorage.getItem("list")));
+  }, []);
+
   return (
     <ContextProvider>
       <main>

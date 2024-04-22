@@ -9,6 +9,7 @@ export default function Meal(props) {
     mealTitle,
     ingredients,
     setListIngredients,
+    listIngredients,
     fetchedRecipeUrl,
     fetchedRecipeSource,
   } = props;
