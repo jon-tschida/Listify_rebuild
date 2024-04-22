@@ -17,10 +17,9 @@ export default function Meal(props) {
   const addToIngredeintsList = (setterFunction, newIngredients) => {
     setterFunction((prevState) => [
       ...prevState,
-      ...newIngredients.filter((el, index) => prevState[index] !== el),
+      ...newIngredients.filter((el, index) => prevState[index] !== el).filter(el => typeof el != "object"),
     ]);
   };
-
   return (
     <div>
       <div className={`flex flex-row items-center justify-between w-full h-12 ${expanded ? `rounded-t-md` : `rounded-md my-1`} bg-slate-400 `}>

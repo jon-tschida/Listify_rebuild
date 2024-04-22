@@ -4,6 +4,7 @@ import Image from "next/image";
 import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
 import { deleteItem } from "../scripts/deleteItem";
+import { list } from "postcss";
 
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
@@ -16,6 +17,7 @@ export default function GroceryList(props) {
         setCopied(false);
       }, 3000);
     });
+
   return (
     <>
       <div

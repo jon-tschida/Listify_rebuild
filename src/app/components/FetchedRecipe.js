@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Meal from "./Meal";
 
 export default function FetchedRecipe(props) {
   const {
@@ -8,30 +7,37 @@ export default function FetchedRecipe(props) {
     fetchedIngredients,
     imageURL,
     imageHeightWidth,
-    setMealsList,
-    setListIngredients,
     fetchedRecipeSource,
     fetchedRecipeUrl,
+    setMealDetails,
   } = props;
 
-  // We run this function when the user clicks the `add` button from one of the fetched recipes 
+  // We run this function when the user clicks the `add` button from one of the fetched recipes
+
   const addMealToList = () => {
     // Fixing our ingredient lists by creating an array of just the ingredients
     let fixedIngredientListforProps = fetchedIngredients.map(
       (item) => item.food
     );
-    // Using our fixed ingredients list from above to pass into a meal component
-    setMealsList((prevState) => [
-      ...prevState,
-      <Meal
-        ingredients={fixedIngredientListforProps}
-        mealTitle={fetchedTitle}
-        setListIngredients={setListIngredients}
-        fetchedRecipeSource={fetchedRecipeSource}
-        fetchedRecipeUrl={fetchedRecipeUrl}
-      />,
-    ]);
-    fixedIngredientListforProps = [];
+    // Pushing a link to the recipe at the end of the ingredients array
+    fixedIngredientListforProps.push(
+      <a
+        href={fetchedRecipeUrl}
+        rel="noreferrer"
+        target="_blank"
+        className="p-1 underline text-searchBtnBlue w-fit"
+      >
+        {fetchedRecipeSource}
+      </a>
+    );
+    
+    // Using our fixed ingredients list from above to pass into a meal details
+    setMealDetails((prevState) => {
+      return {
+        titles: [...prevState.titles, fetchedTitle],
+        ingredients: [...prevState.ingredients, fixedIngredientListforProps],
+      };
+    });
   };
 
   // Some response for quantities looked funny: "0 salt", "0 pepper" should just show salt and pepper - or 0.333333333 cups should just be 0.33 cups
@@ -44,7 +50,7 @@ export default function FetchedRecipe(props) {
       return ingredientQuantity.toFixed(2);
     else if (ingredientQuantity !== 0) return ingredientQuantity;
   };
-  
+
   return (
     <>
       <Image

@@ -1,39 +1,57 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import ContextProvider from "./ContextProvider";
-
 import Image from "next/image";
 import Meal from "./Meal";
 import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
-import { deleteItem } from "../scripts/deleteItem";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
+import { list } from "postcss";
 
 export default function Main() {
-  const [formInput, setFormInput] = React.useState("");
-
   const [listIngredients, setListIngredients] = React.useState([]);
-  const [mealsList, setMealsList] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
-
+  const [mealDetails, setMealDetails] = React.useState(() => {
+    return {
+      titles: [],
+      ingredients: [],
+    };
+  });
   const openCloseSearchRecipes = (setFunction) =>
     setFunction((prevState) => !prevState);
 
+  const deleteMeal = (index) => {
+    setMealDetails((prevState) => {
+      return {
+        titles: [...prevState.titles.filter((_, i) => i !== index)],
+        ingredients: [...prevState.ingredients.filter((_, i) => i !== index)],
+      };
+    });
+  };
 
-    // This runs on first load
-    // if nothing is saved in local storage yet (users on first visit) then we create a local storage entry with a blank array
-    // If the user has added meals those are saved in local storage, we use the setMealsList to set our state to what is saved in local storage.
   React.useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      // If nothing is stored in local storage, then we create a blank array in local storage
-      if (!!localStorage.getItem("meals") == false) {
-        localStorage.setItem("meals", JSON.stringify([]));
-      }
-      let savedMeals = JSON.parse(localStorage.getItem("meals"));
-      setMealsList(savedMeals);
-    }
+    setTimeout(() => {
+      localStorage.setItem("list", JSON.stringify(listIngredients));
+    }, 250);
+  }, [listIngredients]);
+
+  React.useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("list"));
+    !!data && setListIngredients(JSON.parse(localStorage.getItem("list")));
   }, []);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("meals", JSON.stringify(mealDetails));
+    }, 250);
+  }, [mealDetails]);
+
+  React.useEffect(() => {
+    let mealsData = JSON.parse(localStorage.getItem("meals"));
+    if (!!mealsData && mealsData.titles.length > 0) setMealDetails(JSON.parse(localStorage.getItem("meals")));
+  }, []);
+
   return (
     <ContextProvider>
       <main>
@@ -41,8 +59,7 @@ export default function Main() {
           <SearchRecipes
             setSearchingRecipes={setSearchingRecipes}
             openCloseSearchRecipes={openCloseSearchRecipes}
-            setMealsList={setMealsList}
-            setListIngredients={setListIngredients}
+            setMealDetails={setMealDetails}
           />
         )}
         <div className="flex tablet:flex-row items-center justify-around tablet:w-4/5 tablet:h-[600px] phone:h-[700px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 phone:flex-col phone:w-full">
@@ -50,36 +67,32 @@ export default function Main() {
             <h1>Meals</h1>
             <hr className="w-3/5 m-auto mb-5" />
             <div id="mealAndList" className="overflow-auto h-4/5">
-              {/* Our mealsList state is an array of Meal components
-              These Meal components are built with the add meal component, or from the searchrecipes componet*/}
-              { //typeof window !== "undefined" &&
-                mealsList.map((component, index) => {
-                  const Component = Meal;
-                  return (
-                    <>
-                      <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
-                        <div key={index} className="w-4/5">
-                          <Component key={index} {...component.props} />
-                        </div>
-                        <div className="absolute top-0 right-0">
-                          <Image
-                            priority
-                            alt="delete meal button"
-                            src={closeButton}
-                            className="w-[20px] cursor-pointer select-none"
-                            onClick={() => deleteItem(setMealsList, index)}
-                          />
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
-              <AddNewMeal
-                mealsList={mealsList}
-                setFormInput={setFormInput}
-                setMealsList={setMealsList}
-                setListIngredients={setListIngredients}
-              />
+              <>
+                <div className="relative flex items-center justify-around m-auto rounded-sm w-5/5">
+                  <div className="w-4/5">
+                    {mealDetails.titles.length > 0 &&
+                      mealDetails.titles.map((item, index) => {
+                        return (
+                          <>
+                            <Image
+                              alt="delete meal icon"
+                              src={closeButton}
+                              className="absolute right-0"
+                              onClick={() => deleteMeal(index)}
+                            />
+                            <Meal
+                              mealTitle={item}
+                              ingredients={mealDetails.ingredients[index]}
+                              setListIngredients={setListIngredients}
+                              listIngredients={listIngredients}
+                            />
+                          </>
+                        );
+                      })}
+                  </div>
+                </div>
+              </>
+              <AddNewMeal setMealDetails={setMealDetails} />
             </div>
             <div
               className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-mealsBg text-zinc-100"
