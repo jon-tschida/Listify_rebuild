@@ -21,6 +21,7 @@ export default function FetchedRecipe(props) {
       let fixedIngredientListforProps = fetchedIngredients.map(
         (item) => item.food
       );
+      /*
       // Pushing a link to the recipe at the end of the ingredients array
       fixedIngredientListforProps.push(
         <a
@@ -32,7 +33,7 @@ export default function FetchedRecipe(props) {
           {fetchedRecipeSource}
         </a>
       );
-
+      */
       // Using our fixed ingredients list from above to pass into a meal details
       setMealDetails((prevState) => {
         return {

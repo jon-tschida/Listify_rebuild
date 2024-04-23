@@ -51,7 +51,6 @@ export default function Main() {
     let mealsData = JSON.parse(localStorage.getItem("meals"));
     if (!!mealsData && mealsData.titles.length > 0) setMealDetails(JSON.parse(localStorage.getItem("meals")));
   }, []);
-
   return (
     <ContextProvider>
       <main>
