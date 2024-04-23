@@ -7,7 +7,6 @@ import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
-import { list } from "postcss";
 
 export default function Main() {
   const [listIngredients, setListIngredients] = React.useState([]);
