@@ -77,7 +77,7 @@ export default function Main() {
                             <Image
                               alt="delete meal icon"
                               src={closeButton}
-                              className="absolute right-0"
+                              className="absolute right-0 transition-all cursor-pointer hover:scale-105"
                               onClick={() => deleteMeal(index)}
                             />
                             <Meal
