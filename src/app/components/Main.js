@@ -7,8 +7,11 @@ import GroceryList from "./GroceryList";
 import AddNewMeal from "./AddNewMeal";
 import SearchRecipes from "./SearchRecipes";
 import closeButton from "../../../public/images/closeButton.svg";
+import HelpComponent from "./HelpComponent";
+import helpIcon from "../../../public/images/question-mark.svg";
 
 export default function Main() {
+  const [openHelp, setOpenHelp] = React.useState(false);
   const [listIngredients, setListIngredients] = React.useState([]);
   const [searchingRecipes, setSearchingRecipes] = React.useState(false);
   const [mealDetails, setMealDetails] = React.useState(() => {
@@ -48,7 +51,8 @@ export default function Main() {
 
   React.useEffect(() => {
     let mealsData = JSON.parse(localStorage.getItem("meals"));
-    if (!!mealsData && mealsData.titles.length > 0) setMealDetails(JSON.parse(localStorage.getItem("meals")));
+    if (!!mealsData && mealsData.titles.length > 0)
+      setMealDetails(JSON.parse(localStorage.getItem("meals")));
   }, []);
   return (
     <ContextProvider>
@@ -60,6 +64,14 @@ export default function Main() {
             setMealDetails={setMealDetails}
           />
         )}
+        {openHelp && <HelpComponent setOpenHelp={setOpenHelp} />}
+        <Image
+          priority
+          alt="help icon"
+          src={helpIcon}
+          className="absolute cursor-pointer top-2 left-2"
+          onClick={() => setOpenHelp((prevState) => !prevState)}
+        />
         <div className="flex tablet:flex-row items-center justify-around tablet:w-4/5 tablet:h-[600px] phone:h-[700px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 phone:flex-col phone:w-full">
           <div className="p-1 rounded-md tablet:w-2/5 h-4/5 drop-shadow-md bg-mealsAndListBg phone:w-4/5 phone:mb-2 tablet:mb-0">
             <h1>Meals</h1>
@@ -108,6 +120,16 @@ export default function Main() {
             />
           </div>
         </div>
+        <p className="absolute left-0 bottom-0 right-0 ml-auto mr-auto w-[200px] text-zinc-500">
+          Created by{" "}
+          <a
+            href="https://github.com/jon-tschida"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i>Jon Tschida</i>
+          </a>
+        </p>
       </main>
     </ContextProvider>
   );
