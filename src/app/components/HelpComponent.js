@@ -22,7 +22,7 @@ export default function HelpComponent(props) {
           <p>
             Listify is here to make creating grocery lists easier. Listify does
             this by adding the ingredients from your meals directly into the
-            grocery list!
+            grocery list! Both the meals list and the grocery list will save between visits. 
           </p>
           <br />
           <p>
