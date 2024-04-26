@@ -26,14 +26,14 @@ export default function HelpComponent(props) {
           </p>
           <br />
           <p>
-            To get started, create a meal by either using the `Add a meal` form.
+            To get started, create a meal by clicking `Add a meal`.
             From here, you can fill out your favorite weekly meals by giving it
             a title and some ingredients.
           </p>
           <br />
           <p>
             Need some inspiration? You can search from a whole database of
-            recipes and automatically add any of those meals to your meals list.
+            recipes and automatically add any of those meals to your meals list by clicking `Search for recipes`.
           </p>
         </div>
       </div>
