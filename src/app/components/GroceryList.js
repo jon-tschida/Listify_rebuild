@@ -4,10 +4,13 @@ import Image from "next/image";
 import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
 import { deleteItem } from "../scripts/deleteItem";
+import plusSign from "../../../public/images/plusSign.svg";
 
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
   const [copied, setCopied] = React.useState(false);
+  const [addingItem, setAddingItem] = React.useState(false);
+  const [addingItemInput, setAddingItemInput] = React.useState("");
 
   const copyText = (text) =>
     navigator.clipboard.writeText(text).then(() => {
@@ -17,12 +20,51 @@ export default function GroceryList(props) {
       }, 3000);
     });
 
+  const addNewIngredientToList = (e) => {
+    if (addingItemInput.length > 0) {
+      e.preventDefault();
+      setListIngredients((prevState) => [...prevState, addingItemInput]);
+      setAddingItem(false);
+    }
+    else {
+      e.preventDefault()
+      setAddingItem(false)
+    }
+  };
+
+  const handleChange = (e) => {
+    setAddingItemInput(e.target.value);
+  };
+
   return (
     <>
       <div
         id="mealAndList"
         className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5"
       >
+        {addingItem ? (
+          <form className="flex items-center justify-center m-auto text-center " onSubmit={addNewIngredientToList}>
+            <input
+              type="text"
+              className="rounded-sm bg-zinc-100"
+              onChange={handleChange}
+            ></input>
+            <button type="submit">
+              <Image
+                src={plusSign}
+                className="w-5 ml-2 cursor-pointer"
+                alt="add ingredient"
+              />
+            </button>
+          </form>
+        ) : (
+          <div
+            className="text-center cursor-pointer"
+            onClick={() => setAddingItem((prevState) => !prevState)}
+          >
+            Add an Item
+          </div>
+        )}
         {typeof window !== "undefined" &&
           listIngredients.map((el, index) => (
             <div
