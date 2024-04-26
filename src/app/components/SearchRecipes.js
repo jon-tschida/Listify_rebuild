@@ -8,10 +8,6 @@ import Meal from "./Meal";
 import Loader from "./Loader";
 import SearchForm from "./SearchForm";
 
-// https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients;
-// const apiUrl =
-//   "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients";
-
 export default function SearchRecipes(props) {
   const {
     openCloseSearchRecipes,
@@ -70,7 +66,7 @@ export default function SearchRecipes(props) {
 
   React.useEffect(() => {
     setApiUrl(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${process.env.API_KEY}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
     );
   }, [formData]);
 
