@@ -47,10 +47,10 @@ export default function SearchRecipes(props) {
   };
   React.useEffect(() => {
     if (data) {
-      data.hits.map((recipeEntry) =>
+      data.hits.map((recipeEntry, index) =>
         setRecipeComponents((prevState) => [
           ...prevState,
-          <FetchedRecipe
+          <FetchedRecipe key={index}
             fetchedRecipeSource={recipeEntry.recipe.source}
             fetchedRecipeUrl={recipeEntry.recipe.url}
             fetchedTitle={recipeEntry.recipe.label}

@@ -70,6 +70,7 @@ export default function GroceryList(props) {
             <div
               className="flex justify-between list-none"
               suppressHydrationWarning={true}
+              key={index}
             >
               <li key={index} className="text-lg">
                 {capitalize(el)}
