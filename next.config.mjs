@@ -4,12 +4,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: '**',
+                hostname: 'edamam-product-images.s3.amazonaws.com',
                 port: '',
-                pathname: '**',
+                pathname: '/web-img/**',
             },
         ],
-        domains:["edamam-product-images.s3.amazonaws.com"]
     },
 };
 

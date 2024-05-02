@@ -66,10 +66,9 @@ export default function SearchRecipes(props) {
 
   React.useEffect(() => {
     setApiUrl(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${process.env.API_KEY}&app_id=c0d5554f&app_key=4bea9282ec264827a857e5af4390d2ea&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=${"4bea9282ec264827a857e5af4390d2ea"}&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
     );
   }, [formData]);
-
   return (
     <div className="w-screen h-screen bg-black/80">
       <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-4/5 left-1/2 top-1/2">

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Loader from "./Loader";
 
 export default function FetchedRecipe(props) {
   const {
@@ -21,6 +22,8 @@ export default function FetchedRecipe(props) {
       let fixedIngredientListforProps = fetchedIngredients.map(
         (item) => item.food
       );
+
+      ////////////// REVISIT THIS TO FIX RECIPE LINKS
       /*
       // Pushing a link to the recipe at the end of the ingredients array
       fixedIngredientListforProps.push(
@@ -34,6 +37,7 @@ export default function FetchedRecipe(props) {
         </a>
       );
       */
+
       // Using our fixed ingredients list from above to pass into a meal details
       setMealDetails((prevState) => {
         return {
@@ -59,6 +63,7 @@ export default function FetchedRecipe(props) {
   return (
     <>
       <Image
+        loader={() => <Loader />}
         alt={`${fetchedTitle} image`}
         src={imageURL}
         width={imageHeightWidth}
