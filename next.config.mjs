@@ -9,6 +9,7 @@ const nextConfig = {
                 pathname: '**',
             },
         ],
+        domains:["edamam-product-images.s3.amazonaws.com"]
     },
 };
 
