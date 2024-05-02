@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Loader from "./Loader";
 
 export default function FetchedRecipe(props) {
   const {
