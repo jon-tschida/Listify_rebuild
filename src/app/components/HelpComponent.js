@@ -8,7 +8,7 @@ export default function HelpComponent(props) {
     <div
       className="w-screen h-screen bg-black/80"
     >
-      <div className="absolute flex flex-col w-2/5 p-2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-3/5 left-1/2 top-1/2">
+      <div className="absolute flex flex-col w-2/5 p-2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-fit left-1/2 top-1/2">
         <Image
           priority
           alt="close"
@@ -17,7 +17,7 @@ export default function HelpComponent(props) {
           onClick={() => setOpenHelp((prevState) => !prevState)}
         />
         <h2 className="text-xl text-center">What is Listify?</h2>
-        <div className="p-4 text-lg">
+        <div className="p-4 overflow-auto text-lg">
           <br />
           <p>
             Listify is here to make creating grocery lists easier. Listify does
