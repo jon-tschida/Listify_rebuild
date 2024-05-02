@@ -12,7 +12,6 @@ export default function FetchedRecipe(props) {
     fetchedRecipeUrl,
     setMealDetails,
   } = props;
-
   const [added, setAdded] = React.useState(false);
 
   // We run this function when the user clicks the `add` button from one of the fetched recipes
@@ -59,16 +58,15 @@ export default function FetchedRecipe(props) {
       return ingredientQuantity.toFixed(2);
     else if (ingredientQuantity !== 0) return ingredientQuantity;
   };
-
   return (
     <>
       <Image
-        loader={() => <Loader />}
         alt={`${fetchedTitle} image`}
         src={imageURL}
         width={imageHeightWidth}
         height={imageHeightWidth}
         className="flex-2"
+        loading="lazy"
       />
       <div className="flex flex-col justify-around flex-1 ml-5 text-sm">
         <p

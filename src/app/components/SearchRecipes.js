@@ -63,7 +63,6 @@ export default function SearchRecipes(props) {
       );
     }
   }, [data]);
-
   React.useEffect(() => {
     setApiUrl(
       `https://api.edamam.com/api/recipes/v2?type=public&q=${formData}&app_id=c0d5554f&app_key=${"4bea9282ec264827a857e5af4390d2ea"}&imageSize=SMALL&field=label&field=image&field=images&field=ingredientLines&field=ingredients&field=source&field=url`
