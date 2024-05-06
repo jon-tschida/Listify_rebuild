@@ -13,7 +13,6 @@ export default function Meal(props) {
     fetchedRecipeSource,
   } = props;
   const [expanded, setExpanded] = React.useState(false);
-
   const addToIngredeintsList = (setterFunction, newIngredients) => {
     setterFunction((prevState) => [
       ...prevState,
