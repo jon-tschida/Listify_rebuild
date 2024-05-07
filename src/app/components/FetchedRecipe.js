@@ -75,7 +75,7 @@ export default function FetchedRecipe(props) {
           {added ? "Added" : "Add"}
         </p>
         <div className="flex flex-col">
-          <h1 className="mr-1 font-bold border border-red-100 sm-phone:text-left laptop:text-center sm-phone:mt-2 sm-phone:text-sm laptop:text-lg">{fetchedTitle}</h1>
+          <h1 className="mr-1 font-boldsm-phone:text-left laptop:text-center sm-phone:mt-2 sm-phone:text-sm laptop:text-lg">{fetchedTitle}</h1>
           <a
             href={fetchedRecipeUrl}
             rel="noreferrer"
