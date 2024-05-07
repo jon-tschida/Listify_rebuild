@@ -10,7 +10,7 @@ export default function SearchForm(props) {
   };
   return (
     <form
-      className="w-2/6 laptop:w-2/5"
+      className="w-2/6 laptop:w-2/5 sm-phone:w-4/5"
       onSubmit={(event) => fetchRecipes(apiUrl, event)}
     >
       <label

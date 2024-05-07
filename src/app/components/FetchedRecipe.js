@@ -64,23 +64,23 @@ export default function FetchedRecipe(props) {
         src={imageURL}
         width={imageHeightWidth}
         height={imageHeightWidth}
-        className="flex-2"
+        className={`laptop:flex-2 sm-phone:flex-2 sm-phone:w-[100px] sm-phone:h-[100px] laptop:w-[150px] laptop:h-[150px]`}
         loading="lazy"
       />
       <div className="flex flex-col justify-around flex-1 ml-5 text-sm">
         <p
-          className={`absolute top-0 right-0 px-3 py-2 text-white transition-all rounded select-none h-fit ${added === false ? "hover:bg-blue-800 bg-searchBtnBlue cursor-pointer" : "bg-blue-800 cursor-default"}`}
+          className={`absolute top-0 right-0 laptop:px-3 laptop:py-2 sm-phone:px-2 sm-phone:py-1 text-white transition-all rounded select-none h-fit ${added === false ? "hover:bg-blue-800 bg-searchBtnBlue cursor-pointer" : "bg-blue-800 cursor-default"}`}
           onClick={addMealToList}
         >
           {added ? "Added" : "Add"}
         </p>
         <div className="flex flex-col">
-          <h1 className="mr-1 font-bold">{fetchedTitle}</h1>
+          <h1 className="mr-1 font-bold border border-red-100 sm-phone:text-left laptop:text-center sm-phone:mt-2 sm-phone:text-sm laptop:text-lg">{fetchedTitle}</h1>
           <a
             href={fetchedRecipeUrl}
             rel="noreferrer"
             target="_blank"
-            className="p-1 underline text-searchBtnBlue w-fit"
+            className="p-1 underline text-searchBtnBlue w-fit sm-phone:text-[12px]"
           >
             {fetchedRecipeSource}
           </a>

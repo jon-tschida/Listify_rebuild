@@ -70,7 +70,7 @@ export default function SearchRecipes(props) {
   }, [formData]);
   return (
     <div className="w-screen h-screen bg-black/80">
-      <div className="absolute flex flex-col w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-4/5 left-1/2 top-1/2">
+      <div className="absolute flex flex-col -translate-x-1/2 -translate-y-1/2 rounded-lg laptop:w-3/5 sm-phone:w-full bg-mealsAndListBg drop-shadow-lg laptop:h-4/5 sm-phone:h-3/5 left-1/2 top-1/2">
         <Image
           priority
           alt="close"
@@ -102,7 +102,7 @@ export default function SearchRecipes(props) {
           {recipeComponents.map((recipeComponent, index) => (
             <div
               key={index}
-              className="flex w-3/5 min-h-[200px] p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg laptop:w-5/6"
+              className="flex sm-phone:w-5/5 sm-phone:min-h-[150px] laptop:min-h-[200px] p-2 m-2 rounded-md bg-stone-100 drop-shadow-lg laptop:w-5/6"
             >
               {recipeComponent}
             </div>
