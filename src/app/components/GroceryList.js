@@ -44,11 +44,12 @@ export default function GroceryList(props) {
         className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5"
       >
         {addingItem ? (
-          <form className="flex items-center justify-center m-auto text-center " onSubmit={addNewIngredientToList}>
+          <form className="flex items-center justify-center m-auto text-center" onSubmit={addNewIngredientToList}>
             <Image src={closeButton} alt="close add item form" className="mr-1 cursor-pointer" onClick={() => setAddingItem(false)}/>
             <input
               type="text"
-              className="rounded-sm bg-zinc-100"
+              className="rounded-sm bg-zinc-100 sm-phone:w-3/5 laptop:w-3/5"
+              placeholder="salt, broth, etc"
               onChange={handleChange}
             ></input>
             <button type="submit">
