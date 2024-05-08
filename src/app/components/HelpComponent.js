@@ -8,7 +8,7 @@ export default function HelpComponent(props) {
     <div
       className="w-screen h-screen bg-black/80"
     >
-      <div className="absolute flex flex-col w-2/5 p-2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-mealsAndListBg drop-shadow-lg h-fit left-1/2 top-1/2">
+      <div className="absolute flex flex-col p-2 -translate-x-1/2 -translate-y-1/2 rounded-lg laptop:w-2/5 sm-phone:w-full bg-mealsAndListBg drop-shadow-lg h-fit left-1/2 top-1/2">
         <Image
           priority
           alt="close"

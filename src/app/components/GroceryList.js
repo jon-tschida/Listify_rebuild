@@ -88,7 +88,7 @@ export default function GroceryList(props) {
           ))}
       </div>
       <div
-        className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-mealsBg text-zinc-100"
+        className="absolute bottom-0 p-2 mb-2 translate-x-1/2 rounded-md cursor-pointer select-none right-1/2 bg-mealsBg text-zinc-100 laptop:text-base sm-phone:text-sm"
         onClick={() => listIngredients.length > 0 && copyText(listIngredients)}
       >
         {copied ? "Copied!" : "Copy Ingredients"}
