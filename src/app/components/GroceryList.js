@@ -5,6 +5,7 @@ import deleteIcon from "../../../public/images/delete.svg";
 import { capitalize } from "../scripts/capitalize";
 import { deleteItem } from "../scripts/deleteItem";
 import plusSign from "../../../public/images/plusSign.svg";
+import closeButton from "../../../public/images/closeButton.svg";
 
 export default function GroceryList(props) {
   const { listIngredients, setListIngredients } = props;
@@ -44,6 +45,7 @@ export default function GroceryList(props) {
       >
         {addingItem ? (
           <form className="flex items-center justify-center m-auto text-center " onSubmit={addNewIngredientToList}>
+            <Image src={closeButton} alt="close add item form" className="mr-1 cursor-pointer" onClick={() => setAddingItem(false)}/>
             <input
               type="text"
               className="rounded-sm bg-zinc-100"
@@ -52,7 +54,7 @@ export default function GroceryList(props) {
             <button type="submit">
               <Image
                 src={plusSign}
-                className="w-5 ml-2 cursor-pointer"
+                className="w-5 ml-1 cursor-pointer"
                 alt="add ingredient"
               />
             </button>
