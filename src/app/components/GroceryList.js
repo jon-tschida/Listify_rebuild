@@ -26,10 +26,9 @@ export default function GroceryList(props) {
       e.preventDefault();
       setListIngredients((prevState) => [...prevState, addingItemInput]);
       setAddingItem(false);
-    }
-    else {
-      e.preventDefault()
-      setAddingItem(false)
+    } else {
+      e.preventDefault();
+      setAddingItem(false);
     }
   };
 
@@ -44,8 +43,16 @@ export default function GroceryList(props) {
         className="w-4/5 p-3 m-auto overflow-y-auto 0 h-4/5"
       >
         {addingItem ? (
-          <form className="flex items-center justify-center m-auto text-center" onSubmit={addNewIngredientToList}>
-            <Image src={closeButton} alt="close add item form" className="mr-1 cursor-pointer" onClick={() => setAddingItem(false)}/>
+          <form
+            className="flex items-center justify-center m-auto text-center"
+            onSubmit={addNewIngredientToList}
+          >
+            <Image
+              src={closeButton}
+              alt="close add item form"
+              className="mr-1 cursor-pointer sm-phone:w-[20px] laptop:w-[25px]"
+              onClick={() => setAddingItem(false)}
+            />
             <input
               type="text"
               className="rounded-sm bg-zinc-100 sm-phone:w-3/5 laptop:w-3/5"
@@ -55,7 +62,7 @@ export default function GroceryList(props) {
             <button type="submit">
               <Image
                 src={plusSign}
-                className="w-5 ml-1 cursor-pointer"
+                className="w-5 ml-1 cursor-pointer sm-phone:w-[20px] laptop:w-[20px]"
                 alt="add ingredient"
               />
             </button>
@@ -82,7 +89,7 @@ export default function GroceryList(props) {
                 priority
                 alt="delete button"
                 src={deleteIcon}
-                className="transition-all cursor-pointer w-[30px] hover:-translate-x-[3px]"
+                className="transition-all cursor-pointer laptop:w-[30px] hover:-translate-x-[3px]"
                 onClick={() => deleteItem(setListIngredients, index)}
               />
             </div>
