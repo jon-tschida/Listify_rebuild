@@ -1,5 +1,7 @@
 ## Listify
 
+This project is live and can be viewed at [listify-meals.com](https://listify-meals.com/)
+
 #### Languages and Technologies
 
 - Nextjs 
@@ -10,8 +12,3 @@
 ### About
 
 Listify was made to make creating grocery lists easier. No more thinking through your meals for the week and what you need to shop for, just Listify them!
-
-### Purpose for creating:
-
-### What I learned:
-
