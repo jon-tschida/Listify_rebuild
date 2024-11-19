@@ -39,7 +39,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: "Content-Security-Policy",
-                        value: "frame-ancestors: https://app.mutinyhq.com; script-src: https://*.mutinycdn.com; img-src: https://*.mutinycdn.com; connect-src: https://*.mutinyhq.com, https://*.mutinyhq.io, https://*.mutinycdn.com;",
+                        value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
                     },
                 ],
             },
