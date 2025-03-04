@@ -39,7 +39,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: "Content-Security-Policy",
-                        value: "Content-security-policy: default-src 'self'; connect-src 'self' https://api.edamam.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+                        value: "default-src 'self'; connect-src 'self' https://api.edamam.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
                     },
                 ],
             },
